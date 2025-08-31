@@ -10,10 +10,11 @@ export default function Navbar() {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
-    { name: "Books", path: "/books" },
-    { name: "Authors", path: "/authors" },
+    { name: "Publishing", path: "/publishing" },
     { name: "About Us", path: "/about" },
     { name: "Contact", path: "/contact" },
+    { name: "Learn More", path: "/learnmore" },
+
   ]
 
   return (

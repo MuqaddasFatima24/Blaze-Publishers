@@ -1,91 +1,128 @@
-"use client";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { motion } from "framer-motion";
+"use client"
+import { useEffect, useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
 
 export default function Hero() {
-  const images = ["/background.png", "/background1.png", "/background2.png"];
-  const [current, setCurrent] = useState(0);
+  const images = ["/background.png", "/background1.png", "/background2.png"]
+  const [current, setCurrent] = useState(0)
 
-  // Auto-slide every 5s
+  // background slider
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % images.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [images.length]);
+      setCurrent((prev) => (prev + 1) % images.length)
+    }, 6000)
+    return () => clearInterval(interval)
+  }, [])
+
+  // Lines for fade-in animation
+  const lines = [
+    "We specialize in transforming imagination into beautifully crafted books.",
+    "With premium publishing, editing, and marketing services,",
+    "every story finds its timeless place."
+  ]
+
+  const [visibleLines, setVisibleLines] = useState<number>(0)
+
+  useEffect(() => {
+    let i = 0
+    const interval = setInterval(() => {
+      setVisibleLines((prev) => prev + 1)
+      i++
+      if (i >= lines.length) clearInterval(interval)
+    }, 1200) // each line fades in after 1.2s
+    return () => clearInterval(interval)
+  }, [])
 
   return (
-    <section className="relative w-full h-screen flex items-center justify-center text-center overflow-hidden">
-      {/* Background Slider */}
-      {images.map((img, index) => (
+    <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black">
+      {/* Background with fade */}
+      <div className="absolute inset-0">
         <Image
-          key={index}
-          src={img}
-          alt="Blaze Publishers"
+          src={images[current]}
+          alt="Hero background"
           fill
-          priority={index === 0}
-          className={`object-cover transition-opacity duration-1000 ease-in-out ${
-            index === current ? "opacity-100" : "opacity-0"
-          }`}
+          className="object-cover transition-opacity duration-1000 ease-in-out"
+          priority
         />
-      ))}
+        <div className="absolute inset-0 bg-black/60" />
+      </div>
 
-      {/* Black Overlay */}
-      <div className="absolute inset-0 bg-black/60"></div>
+      {/* Content */}
+      <div className="relative z-10 text-center px-6 max-w-4xl">
+        {/* Gradient premium heading */}
+        <h1 className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-orange-400 via-yellow-300 to-green-400 bg-clip-text text-transparent animate-gradient-x transition-all duration-500 hover:tracking-wider">
+          Blaze Publisher
+        </h1>
 
-      {/* Hero Content */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="relative z-10 max-w-3xl px-6"
-      >
-        <motion.h1
-          whileHover={{ scale: 1.05, letterSpacing: "0.05em" }}
-          transition={{ duration: 0.3 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-white leading-tight drop-shadow-lg"
-        >
-          Blaze{" "}
-          <span className="bg-gradient-to-r from-orange-400 to-yellow-500 bg-clip-text text-transparent">
-            Publishers
-          </span>
-        </motion.h1>
+        {/* Subheading */}
+        <p className="mt-5 font-bold text-lg md:text-xl text-white italic">
+          Turning Your Stories Into Timeless Books
+        </p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 1 }}
-          className="mt-4 text-base sm:text-lg md:text-xl text-gray-200 drop-shadow font-medium"
-        >
-          Empowering <span className="text-orange-400">authors</span> with
-          <span className="text-orange-400"> publishing</span>,
-          <span className="text-orange-400"> editing</span>, and
-          <span className="text-orange-400"> marketing</span> services.
-        </motion.p>
+        {/* Animated text lines */}
+        <div className="mt-6 text-base md:text-lg text-white max-w-3xl mx-auto leading-relaxed space-y-2">
+          {lines.map((line, idx) => (
+            <p
+              key={idx}
+              className={`transition-opacity duration-1000 ${
+                visibleLines > idx ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              {line}
+            </p>
+          ))}
+        </div>
 
-        {/* Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="mt-8 flex flex-col sm:flex-row gap-4 justify-center"
-        >
+        {/* Glassmorphic buttons */}
+        <div className="mt-8 flex justify-center gap-6">
           <Link
             href="/services"
-            className="px-6 py-3 rounded-full bg-orange-600 text-white font-semibold shadow-md hover:bg-orange-700 hover:shadow-lg hover:scale-105 transition-all duration-300"
+            className="px-6 py-3 rounded-xl text-white font-medium backdrop-blur-lg bg-white/10 border border-white/20 shadow-lg hover:scale-105 hover:bg-white/20 transition"
           >
-            Explore Services
+            Explore Books
           </Link>
           <Link
-            href="/learn-more"
-            className="px-6 py-3 rounded-full bg-white text-gray-900 font-semibold shadow-md hover:bg-gray-100 hover:shadow-lg hover:scale-105 transition-all duration-300"
+            href="/publishing"
+            className="px-6 py-3 rounded-xl text-white font-medium backdrop-blur-lg bg-orange-500/80 border border-orange-400/40 shadow-lg hover:scale-105 hover:bg-orange-500 transition"
           >
-            Learn More
+            Publish With Us
           </Link>
-        </motion.div>
-      </motion.div>
+        </div>
+
+        {/* Divider line with glow */}
+        <div className="mt-6 w-40 h-[2px] mx-auto bg-gradient-to-r from-transparent via-orange-400 to-transparent animate-pulse" />
+
+        {/* Stamps Row */}
+        <div className="mt-10 flex justify-center gap-6">
+          {["/stamp.png", "/stamp1.png", "/stamp2.png"].map((src, idx) => (
+            <Image
+              key={idx}
+              src={src}
+              alt={`Stamp ${idx}`}
+              width={80}
+              height={80}
+              className="rounded-full object-contain hover:scale-110 transition-transform duration-300 hover:drop-shadow-[0_0_15px_rgba(255,165,0,0.7)]"
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Gradient Animation CSS */}
+      <style jsx>{`
+        @keyframes gradient-x {
+          0%, 100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+        .animate-gradient-x {
+          background-size: 200% 200%;
+          animation: gradient-x 6s ease infinite;
+        }
+      `}</style>
     </section>
-  );
+  )
 }
