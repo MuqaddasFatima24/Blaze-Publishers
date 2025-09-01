@@ -1,9 +1,5 @@
 
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@import "tailwindcss";
 :root{
   --brand-from: #ff6a00;
   --brand-to: #ff1e56;

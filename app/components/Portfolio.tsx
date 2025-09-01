@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"   // ✅ added for navigation
+import Image from 'next/image';
 
 export default function Portfolio() {
   const images = ["book2.png", "book3.png", "book4.png", "book5.png"]
@@ -55,25 +56,25 @@ export default function Portfolio() {
             {/* Features Section */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
               <div className="flex items-center gap-4">
-                <img src="/icon1.png" alt="Icon 1" className="w-10 h-10" />
+                <Image src="/icon1.png" alt="Icon 1" width={10} height={10} className="w-10 h-10"  />
                 <p className="text-black font-[Merriweather]">
                   Publish effortlessly in both print and digital formats.
                 </p>
               </div>
               <div className="flex items-center gap-4">
-                <img src="/icon2.png" alt="Icon 2" className="w-10 h-10" />
+                <Image src="/icon2.png" alt="Icon 2" width={10} height={10} className="w-10 h-10" />
                 <p className="text-black font-[Merriweather]">
                   Build a lasting connection with your ideal readers.
                 </p>
               </div>
               <div className="flex items-center gap-4">
-                <img src="/icon3.png" alt="Icon 3" className="w-10 h-10" />
+                <Image src="/icon3.png" alt="Icon 3" width={10} height={10} className="w-10 h-10" />
                 <p className="text-black font-[Merriweather]">
                   Simplify distribution with our streamlined process.
                 </p>
               </div>
               <div className="flex items-center gap-4">
-                <img src="/icon4.png" alt="Icon 4" className="w-10 h-10" />
+                <Image src="/icon4.png" alt="Icon 4" width={10} height={10} className="w-10 h-10" />
                 <p className="text-black font-[Merriweather]">
                   Establish a powerful, premium author brand identity.
                 </p>
