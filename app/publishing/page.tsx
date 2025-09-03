@@ -149,7 +149,7 @@ export default function PublishingSection() {
               You are One Step Away from Becoming a Published Author
             </h2>
             <p className="text-gray-600 text-base md:text-lg mb-4 leading-relaxed">
-              Transform your manuscript — or even just your ideas — into a book readers will love. At{" "}
+              Transform your manuscript or even just your ideas — into a book readers will love. At{" "}
               <span className="font-semibold">Blaze Publishers</span>, we guide you through every step: ghostwriting, editing, cover design, ISBNs, global distribution, and marketing.
             </p>
             <p className="text-gray-600 text-base md:text-lg mb-6 leading-relaxed">
@@ -306,7 +306,7 @@ export default function PublishingSection() {
             Our Published Masterpieces
           </motion.h2>
           <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-            A curated collection of books we have proudly brought to life — each crafted with passion, creativity, and precision.
+            A curated collection of books we have proudly brought to life each crafted with passion, creativity, and precision.
           </p>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">

@@ -42,7 +42,7 @@ export default function Author() {
             It has silenced far too many voices who had something real to say. But it’s time to change that.
           </p>
           <p>
-            At Authors Harbor, we work with new and aspiring book authors every day to create finished books that add value to libraries. 
+            At Blaze Publishers, we work with new and aspiring book authors every day to create finished books that add value to libraries. 
             Our experienced book publishing experts guide you through writing, editing, and publishing with care. 
             As a trusted book publishing company in the USA, we help you write with your own voice intact and your vision clear.
           </p>

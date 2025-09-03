@@ -57,7 +57,7 @@ export default function LearnMorePage() {
           </h2>
           <p className="text-gray-700">
             Our professional editors refine your manuscripts to perfection,
-            ensuring clarity, flow, and error-free content with a premium finish.
+            ensuring clarity, flow, and error free content with a premium finish.
           </p>
         </motion.div>
 
@@ -111,7 +111,7 @@ export default function LearnMorePage() {
           </p>
           <p className="text-gray-700 leading-relaxed">
             Our mission is to empower authors, storytellers, and innovators by
-            providing them with top-quality services that make their publishing
+            providing them with top quality services that make their publishing
             journey smooth, efficient, and successful.
           </p>
         </motion.div>
