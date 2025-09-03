@@ -1,7 +1,12 @@
 "use client"
 import { useEffect, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import Link from "next/link"   // ✅ added for navigation
+import {
+  motion,
+  AnimatePresence,
+  type Variants,
+  type Transition
+} from "framer-motion"
+import Link from "next/link"
 
 export default function Portfolio() {
   const images = ["book2.png", "book3.png", "book4.png", "book5.png"]
@@ -14,13 +19,46 @@ export default function Portfolio() {
 
   const [current, setCurrent] = useState(0)
 
-  // Auto slide every 3 seconds
+  // Calmer, premium cadence (5s)
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length)
-    }, 3000)
+    }, 5000)
     return () => clearInterval(interval)
   }, [images.length])
+
+  // Typed cubic-bezier easings (avoid "string" eases)
+  const easeInOutCubic: Transition["ease"] = [0.42, 0, 0.58, 1]
+  const easeOutCubic: Transition["ease"] = [0.33, 1, 0.68, 1]
+
+  // Variants for premium crossfade (typed)
+  const textVariants: Variants = {
+    initial: { opacity: 0, y: 6, filter: "blur(2px)" },
+    animate: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: 0.8, ease: easeInOutCubic }
+    },
+    exit: {
+      opacity: 0,
+      y: -6,
+      filter: "blur(2px)",
+      transition: { duration: 0.6, ease: easeOutCubic }
+    }
+  }
+
+  const imageVariants: Variants = {
+    initial: { opacity: 0 },
+    animate: {
+      opacity: 1,
+      transition: { duration: 0.8, ease: easeInOutCubic }
+    },
+    exit: {
+      opacity: 0,
+      transition: { duration: 0.6, ease: easeOutCubic }
+    }
+  }
 
   return (
     <section className="relative py-20 bg-white">
@@ -29,31 +67,36 @@ export default function Portfolio() {
           {/* Left Side - Text */}
           <div className="text-left">
             <motion.h2
-              initial={{ opacity: 0, y: -40 }}
+              initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8, ease: easeInOutCubic }}
               viewport={{ once: true }}
-              className="text-5xl md:text-6xl font-extrabold font-[Playfair_Display] bg-gradient-to-r from-orange-500 to-yellow-400 bg-clip-text text-transparent transition-all duration-500 hover:scale-105 hover:tracking-tight cursor-pointer"
+              className="font-inter-tight text-5xl md:text-6xl font-extrabold
+                         bg-gradient-to-r from-orange-500 to-yellow-400 bg-clip-text text-transparent
+                         mb-8 md:mb-10"
             >
-              Blaze Publisher
+              Blaze Publishers
             </motion.h2>
 
-            {/* Changing description */}
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={current}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-xl text-lg text-black leading-relaxed mb-10 font-[Merriweather]"
-              >
-                {texts[current]}
-              </motion.p>
-            </AnimatePresence>
+            {/* Changing description (more gap + premium crossfade) */}
+            <div aria-live="polite">
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={current}
+                  variants={textVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  className="max-w-xl text-lg text-black leading-relaxed md:leading-loose tracking-normal
+                             font-[Merriweather] mt-2 md:mt-3"
+                >
+                  {texts[current]}
+                </motion.p>
+              </AnimatePresence>
+            </div>
 
             {/* Features Section */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10 mt-8">
               <div className="flex items-center gap-4">
                 <img src="/icon1.png" alt="Icon 1" className="w-10 h-10" />
                 <p className="text-black font-[Merriweather]">
@@ -80,15 +123,12 @@ export default function Portfolio() {
               </div>
             </div>
 
-            {/* Premium Button - Changed to Learn More */}
+            {/* Premium Button */}
             <Link href="/learnmore">
               <motion.button
-                whileHover={{
-                  scale: 1.08,
-                  backgroundColor: "#FF6A00", // deep orange
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 rounded-xl bg-orange-400 text-black font-semibold tracking-wide 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+                className="px-8 py-3 rounded-xl bg-orange-400 text-black font-semibold tracking-wide
                            shadow-lg transition-all duration-300 hover:shadow-xl font-[Cormorant_Garamond]"
               >
                 Learn More
@@ -104,10 +144,10 @@ export default function Portfolio() {
                   key={current}
                   src={`/${images[current]}`}
                   alt={`Book ${current + 2}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.6 }}
+                  variants={imageVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
                   className="absolute w-full h-full object-contain"
                 />
               </AnimatePresence>

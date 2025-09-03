@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import Image from "next/image"
-import { motion } from "framer-motion"
+import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function LearnMorePage() {
   return (
@@ -23,9 +23,10 @@ export default function LearnMorePage() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg z-10"
+          className="relative font-inter-tight text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg z-10"
         >
-          Learn More About <span className="text-orange-400">Blaze Publishers</span>
+          Learn More About{" "}
+          <span className="text-orange-400">Blaze Publishers</span>
         </motion.h1>
       </section>
 
@@ -36,10 +37,13 @@ export default function LearnMorePage() {
           whileHover={{ scale: 1.05 }}
           className="p-8 rounded-2xl bg-white/10 backdrop-blur-lg shadow-lg border border-orange-300"
         >
-          <h2 className="text-2xl font-bold text-orange-500 mb-4">Ebook Writing</h2>
+          <h2 className="font-inter-tight text-2xl font-bold text-orange-500 mb-4">
+            Ebook Writing
+          </h2>
           <p className="text-gray-700">
-            Transform your ideas into compelling ebooks with our expert writing team. 
-            We specialize in creating engaging, polished, and market-ready content.
+            Transform your ideas into compelling ebooks with our expert writing
+            team. We specialize in creating engaging, polished, and market-ready
+            content.
           </p>
         </motion.div>
 
@@ -48,10 +52,12 @@ export default function LearnMorePage() {
           whileHover={{ scale: 1.05 }}
           className="p-8 rounded-2xl bg-white/10 backdrop-blur-lg shadow-lg border border-orange-300"
         >
-          <h2 className="text-2xl font-bold text-orange-500 mb-4">Editing</h2>
+          <h2 className="font-inter-tight text-2xl font-bold text-orange-500 mb-4">
+            Editing
+          </h2>
           <p className="text-gray-700">
-            Our professional editors refine your manuscripts to perfection, ensuring 
-            clarity, flow, and error-free content with a premium finish.
+            Our professional editors refine your manuscripts to perfection,
+            ensuring clarity, flow, and error-free content with a premium finish.
           </p>
         </motion.div>
 
@@ -60,10 +66,12 @@ export default function LearnMorePage() {
           whileHover={{ scale: 1.05 }}
           className="p-8 rounded-2xl bg-white/10 backdrop-blur-lg shadow-lg border border-orange-300"
         >
-          <h2 className="text-2xl font-bold text-orange-500 mb-4">Publishing</h2>
+          <h2 className="font-inter-tight text-2xl font-bold text-orange-500 mb-4">
+            Publishing
+          </h2>
           <p className="text-gray-700">
-            From formatting to distribution, we handle the entire publishing process 
-            so your ebook reaches global audiences effortlessly.
+            From formatting to distribution, we handle the entire publishing
+            process so your ebook reaches global audiences effortlessly.
           </p>
         </motion.div>
       </section>
@@ -92,19 +100,19 @@ export default function LearnMorePage() {
           transition={{ duration: 0.8 }}
           className="space-y-5"
         >
-          <h2 className="text-3xl md:text-4xl font-extrabold text-orange-500">
+          <h2 className="font-inter-tight text-3xl md:text-4xl font-extrabold text-orange-500">
             Why Choose Blaze Publishers?
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            We combine creativity, precision, and technology to deliver 
-            outstanding publishing solutions. From concept to distribution, 
-            our team ensures that your work not only stands out but also 
-            reaches the right audience with maximum impact.
+            We combine creativity, precision, and technology to deliver
+            outstanding publishing solutions. From concept to distribution, our
+            team ensures that your work not only stands out but also reaches the
+            right audience with maximum impact.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            Our mission is to empower authors, storytellers, and innovators 
-            by providing them with top-quality services that make their 
-            publishing journey smooth, efficient, and successful.
+            Our mission is to empower authors, storytellers, and innovators by
+            providing them with top-quality services that make their publishing
+            journey smooth, efficient, and successful.
           </p>
         </motion.div>
       </section>
@@ -116,7 +124,7 @@ export default function LearnMorePage() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-6">
+          <h2 className="font-inter-tight text-3xl md:text-4xl font-extrabold mb-6">
             Ready to Elevate Your Story?
           </h2>
           <Link
@@ -128,5 +136,5 @@ export default function LearnMorePage() {
         </motion.div>
       </section>
     </main>
-  )
+  );
 }

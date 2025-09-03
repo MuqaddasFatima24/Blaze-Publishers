@@ -1,16 +1,10 @@
 "use client"
-import { Playfair_Display } from "next/font/google"
 import {
   ShieldCheck,
   RocketLaunch,
   Handshake,
   Crown,
-} from "@phosphor-icons/react" 
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-})
+} from "@phosphor-icons/react"
 
 const services = [
   {
@@ -47,9 +41,8 @@ export default function Services() {
       <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-orange-100/40 rounded-full blur-[120px] animate-pulse"></div>
 
       <div className="relative max-w-7xl mx-auto z-10 text-center mb-16">
-        <h2
-          className={`${playfair.className} text-4xl md:text-5xl font-bold text-gray-900`}
-        >
+        {/* Section Heading now Inter Tight */}
+        <h2 className="font-inter-tight text-4xl md:text-5xl font-bold text-gray-900">
           Our <span className="text-orange-500">Premium</span> Services
         </h2>
         <p className="mt-4 text-lg text-black max-w-2xl mx-auto">
@@ -71,10 +64,8 @@ export default function Services() {
             {/* Icon */}
             <div className="mb-6 flex justify-center">{service.icon}</div>
 
-            {/* Title with underline effect */}
-            <h3
-              className={`${playfair.className} text-xl font-semibold text-gray-900 mb-4 relative inline-block`}
-            >
+            {/* Card Title with Inter Tight */}
+            <h3 className="font-inter-tight text-xl font-semibold text-gray-900 mb-4 relative inline-block">
               {service.title}
               <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-orange-500 group-hover:w-full transition-all duration-500 ease-out shadow-[0_0_8px_#f97316]"></span>
             </h3>

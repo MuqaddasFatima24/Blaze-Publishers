@@ -1,12 +1,6 @@
 "use client"
-import { Playfair_Display } from "next/font/google"
 import { motion } from "framer-motion"
 import CountUp from "react-countup"
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-})
 
 const milestones = [
   { title: "Best-Selling Titles", number: 45, suffix: "+" },
@@ -27,7 +21,7 @@ export default function Milestone() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className={`${playfair.className} text-4xl md:text-5xl font-bold text-white transition-all duration-500`}
+          className="font-inter-tight text-4xl md:text-5xl font-bold text-white transition-all duration-500"
         >
           <span className="relative inline-block cursor-pointer group">
             Our Milestones
@@ -47,10 +41,8 @@ export default function Milestone() {
             transition={{ duration: 1, delay: index * 0.2 }}
             viewport={{ once: true }}
           >
-            {/* Number */}
-            <h3
-              className={`${playfair.className} text-5xl md:text-6xl font-bold text-white mb-3`}
-            >
+            {/* Number with Inter Tight */}
+            <h3 className="font-inter-tight text-5xl md:text-6xl font-bold text-white mb-3">
               <CountUp
                 end={item.number}
                 duration={2.5}

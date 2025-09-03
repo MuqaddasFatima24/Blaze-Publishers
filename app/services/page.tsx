@@ -8,8 +8,7 @@ const services = [
     title: "Writing Services",
     description:
       "Professional writing solutions tailored to your needs, from ghostwriting to storytelling.",
-    image:
-      "/book-1.jpg",
+    image: "/book-1.jpg",
     subServices: [
       "Ghost Writing",
       "Children Book",
@@ -23,8 +22,7 @@ const services = [
     title: "Book Editing",
     description:
       "Enhance your manuscript with our expert editing, design, and publishing services.",
-    image:
-      "/book-2.jpg",
+    image: "/book-2.jpg",
     subServices: [
       "Book Illustration",
       "Children Book Illustration",
@@ -38,8 +36,7 @@ const services = [
     title: "Other Services",
     description:
       "Additional creative services to support your author journey and boost visibility.",
-    image:
-      "/book-3.jpg",
+    image: "/book-3.jpg",
     subServices: [
       "Book Marketing",
       "Book Review",
@@ -92,7 +89,7 @@ export default function ServicesPage() {
       >
         <div className="absolute inset-0 bg-black/60"></div>
         <div className="relative z-10 max-w-3xl">
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg leading-tight">
+          <h1 className="font-inter-tight text-3xl sm:text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg leading-tight">
             Our Services
           </h1>
           <p className="mt-4 text-sm sm:text-base md:text-lg text-gray-200 max-w-2xl mx-auto">
@@ -122,7 +119,7 @@ export default function ServicesPage() {
                   className="w-full h-56 object-cover"
                 />
                 <div className="p-6 text-center">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                  <h3 className="font-inter-tight text-2xl font-bold text-gray-800 mb-4">
                     {service.title}
                   </h3>
                   <p className="text-gray-600 mb-6 text-sm leading-relaxed">
@@ -160,7 +157,7 @@ export default function ServicesPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-8 text-center text-gray-800"
+            className="font-inter-tight text-3xl md:text-4xl font-bold mb-8 text-center text-gray-800"
           >
             Book an Appointment
           </motion.h2>

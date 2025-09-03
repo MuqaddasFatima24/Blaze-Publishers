@@ -18,7 +18,7 @@ export default function WhyChooseUs() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-5xl md:text-6xl font-serif font-extrabold tracking-wide mb-8 drop-shadow-lg 
+          className="font-inter-tight text-5xl md:text-6xl font-extrabold tracking-wide mb-8 drop-shadow-lg 
           transition-all duration-500 hover:scale-105 hover:tracking-wider"
         >
           <span className="hover:text-orange-500 transition-colors duration-500">
@@ -76,7 +76,7 @@ export default function WhyChooseUs() {
 
           <motion.div
             initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
             viewport={{ once: true }}
             className="p-6 rounded-2xl bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-300 shadow-lg"

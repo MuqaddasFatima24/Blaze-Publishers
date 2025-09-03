@@ -14,3 +14,11 @@ body {
   background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
   background-size: 20px 20px;
 }
+:root {
+  --font-inter-tight: 'Inter Tight', sans-serif;
+}
+
+.font-inter-tight {
+  font-family: var(--font-inter-tight);
+}
+

@@ -28,8 +28,7 @@ export default function ContactPage() {
       <section
         className="relative h-screen flex flex-col items-center justify-center text-center px-6"
         style={{
-          backgroundImage:
-            "url('/contact.jpg')",
+          backgroundImage: "url('/contact.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -43,7 +42,7 @@ export default function ContactPage() {
           transition={{ duration: 0.7 }}
           className="relative z-10 px-6"
         >
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg leading-tight">
+          <h1 className="font-inter-tight text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg leading-tight">
             Get in Touch With Us
           </h1>
           <p className="mt-6 max-w-2xl mx-auto text-base md:text-lg text-white/90 leading-relaxed">
@@ -79,7 +78,7 @@ export default function ContactPage() {
             viewport={{ once: true }}
             className="text-center md:text-left"
           >
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-6">
+            <h2 className="font-inter-tight text-3xl md:text-4xl font-extrabold text-gray-800 mb-6">
               Book an Appointment With Our Experts
             </h2>
             <p className="text-gray-600 mb-8 leading-relaxed text-base md:text-lg">
@@ -106,11 +105,17 @@ export default function ContactPage() {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl p-8 md:p-12 border border-orange-100"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-gray-800">
+          <h2 className="font-inter-tight text-3xl md:text-4xl font-bold mb-8 text-center text-gray-800">
             Book an Appointment
           </h2>
 
-          <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <form
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            onSubmit={(e) => {
+              e.preventDefault();
+              console.log("Form submitted:", formData);
+            }}
+          >
             {/* Name */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">

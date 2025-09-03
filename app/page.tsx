@@ -9,7 +9,7 @@ import Books from "./components/Books"
 import WhyChoooseUs from "./components/WhyChooseUs"
 import Portfolio from "./components/Portfolio"
 import Reviews from "./components/Reviews"
-import Idea from "./components/Idea"
+import Form from "./components/Form"
 import Style from "./components/Style"
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
       <WhyChoooseUs />
       <Portfolio />
       <Reviews />
-      <Idea />
+      <Form />
       <Style />
 
     </>

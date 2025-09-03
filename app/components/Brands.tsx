@@ -3,7 +3,16 @@ import Image from "next/image"
 import { useEffect, useState } from "react"
 
 export default function Brands() {
-  const logos = ["/brand1.png", "/brand2.png", "/brand3.png", "/brand4.png", "/brand5.png"]
+  const logos = [
+    "/brand1.png",
+    "/brand2.png",
+    "/brand3.png",
+    "/brand4.png",
+    "/brand5.png",
+    "/brand6.png",
+    "/brand7.png",
+    "/brand8.png",
+  ]
 
   // Optional: for looping animation
   const [index, setIndex] = useState(0)
@@ -16,23 +25,23 @@ export default function Brands() {
   }, [logos.length])
 
   return (
-    <section className="w-full py-12 bg-white">
-      {/* Upgraded heading */}
-      <h2 className="text-center text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-orange-500 via-black to-orange-600 bg-clip-text text-transparent tracking-wide mb-10">
+    <section className="w-full py-16 bg-white">
+      {/* Upgraded heading with Inter Tight */}
+      <h2 className="font-inter-tight text-center text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-orange-500 via-black to-orange-600 bg-clip-text text-transparent tracking-wide mb-14">
         Our Trusted Brands
       </h2>
 
       {/* Looping logos in a line */}
       <div className="overflow-hidden">
-        <div className="flex animate-marquee space-x-12">
+        <div className="flex animate-marquee space-x-16">
           {logos.concat(logos).map((logo, i) => (
             <Image
               key={i}
               src={logo}
               alt={`Brand logo ${i + 1}`}
-              width={150}
-              height={80}
-              className="object-contain transition duration-300 hover:scale-110 hover:drop-shadow-[0_0_15px_rgba(255,102,0,0.6)]"
+              width={200}
+              height={120}
+              className="object-contain transition duration-300 hover:scale-110 hover:drop-shadow-[0_0_20px_rgba(255,102,0,0.6)]"
             />
           ))}
         </div>
@@ -51,7 +60,7 @@ export default function Brands() {
         .animate-marquee {
           display: flex;
           width: max-content;
-          animation: marquee 12s linear infinite;
+          animation: marquee 14s linear infinite;
         }
       `}</style>
     </section>

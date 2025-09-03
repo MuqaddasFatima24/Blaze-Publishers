@@ -1,11 +1,5 @@
 "use client"
-import { Playfair_Display } from "next/font/google"
 import { motion } from "framer-motion"
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-})
 
 export default function Author() {
   return (
@@ -21,13 +15,13 @@ export default function Author() {
       <div className="absolute inset-0 bg-black/50"></div>
 
       <div className="relative z-10 max-w-5xl mx-auto text-center md:text-left">
-        {/* Heading */}
+        {/* Heading with Inter Tight */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className={`${playfair.className} text-4xl md:text-5xl font-bold text-white mb-8`}
+          className="font-inter-tight text-4xl md:text-5xl font-bold text-white mb-8"
         >
           Let’s Get Your Book into Readers’ Hands!
         </motion.h2>

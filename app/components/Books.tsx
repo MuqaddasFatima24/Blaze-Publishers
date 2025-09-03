@@ -1,13 +1,7 @@
 "use client"
-import { Playfair_Display } from "next/font/google"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-})
 
 export default function Books() {
   return (
@@ -22,10 +16,8 @@ export default function Books() {
           viewport={{ once: true }}
           className="space-y-8"
         >
-          {/* Heading */}
-          <h2
-            className={`${playfair.className} text-5xl md:text-6xl font-bold`}
-          >
+          {/* Heading with Inter Tight */}
+          <h2 className="font-inter-tight text-5xl md:text-6xl font-bold">
             <span className="text-black">Discover </span>
             <span className="text-orange-500">Books</span>{" "}
             <span className="text-black">That Inspire</span>

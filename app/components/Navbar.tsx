@@ -14,26 +14,26 @@ export default function Navbar() {
     { name: "About Us", path: "/about" },
     { name: "Contact", path: "/contact" },
     { name: "Learn More", path: "/learnmore" },
-
   ]
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+      {/* Increased navbar height */}
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-24">
         
-        {/* Logo */}
+        {/* Bigger Logo in the corner */}
         <Link href="/" className="flex items-center">
           <Image 
             src="/logo.png" 
             alt="Blaze Publishers" 
-            width={170} 
-            height={35} 
+            width={300}   // logo made bigger
+            height={100} 
             className="object-contain"
           />
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-8 font-medium text-gray-800">
+        <div className="hidden md:flex space-x-10 font-medium text-lg text-gray-800">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -54,14 +54,14 @@ export default function Navbar() {
           onClick={() => setIsOpen(!isOpen)} 
           className="md:hidden text-gray-800"
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {isOpen ? <X size={32} /> : <Menu size={32} />}
         </button>
       </div>
 
       {/* Mobile Dropdown */}
       {isOpen && (
         <div className="md:hidden bg-white shadow-lg border-t">
-          <div className="flex flex-col items-center space-y-4 py-4 font-medium text-gray-800">
+          <div className="flex flex-col items-center space-y-5 py-5 font-medium text-lg text-gray-800">
             {navLinks.map((link) => (
               <Link
                 key={link.name}

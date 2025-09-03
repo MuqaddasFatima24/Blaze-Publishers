@@ -30,7 +30,7 @@ export default function Hero() {
       setVisibleLines((prev) => prev + 1)
       i++
       if (i >= lines.length) clearInterval(interval)
-    }, 1200) // each line fades in after 1.2s
+    }, 1200)
     return () => clearInterval(interval)
   }, [])
 
@@ -50,9 +50,9 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl">
-        {/* Gradient premium heading */}
-        <h1 className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-orange-400 via-yellow-300 to-green-400 bg-clip-text text-transparent animate-gradient-x transition-all duration-500 hover:tracking-wider">
-          Blaze Publisher
+        {/* Gradient premium heading with Inter Tight */}
+        <h1 className="mt-16 font-inter-tight text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-orange-400 via-yellow-300 to-green-400 bg-clip-text text-transparent animate-gradient-x transition-all duration-500 hover:tracking-wider">
+          Blaze Publishers
         </h1>
 
         {/* Subheading */}

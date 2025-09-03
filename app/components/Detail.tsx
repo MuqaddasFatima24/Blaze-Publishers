@@ -1,13 +1,6 @@
 "use client"
 import Image from "next/image"
 import Link from "next/link"
-import { Playfair_Display } from "next/font/google"
-
-// Premium serif font for headings
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-})
 
 export default function Detail() {
   return (
@@ -20,11 +13,17 @@ export default function Detail() {
         
         {/* Left side: Text content */}
         <div className="space-y-8 animate-fadeInLeft">
-          <h2 className={`${playfair.className} text-4xl md:text-5xl font-bold leading-tight text-gray-800`}>
-            Unlock <span className="bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent animate-gradient-x">Next-Level</span> Elegance
+          {/* Heading now uses Inter Tight */}
+          <h2 className="font-inter-tight text-4xl md:text-5xl font-bold leading-tight text-gray-800">
+            Unlock{" "}
+            <span className="bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent animate-gradient-x">
+              Next-Level
+            </span>{" "}
+            Elegance
           </h2>
+
           <p className="text-lg text-black leading-relaxed max-w-lg">
-            Blaze Publisher empowers creators and businesses with 
+            Blaze Publisher empowers creators and businesses with{" "}
             <span className="font-semibold text-gray-800"> refined digital tools </span>
             to publish, manage, and showcase their ideas in a truly premium way. 
             Built with <span className="italic text-orange-500">simplicity</span> and 
@@ -41,14 +40,14 @@ export default function Detail() {
           </Link>
         </div>
 
-        {/* Right side: Clean Image (no frame, square corners) */}
+        {/* Right side: Clean Image */}
         <div className="relative flex justify-center md:justify-end animate-fadeInRight">
           <Image
             src="/book.png"
             alt="Book Detail"
             width={450}
             height={450}
-            className="shadow-2xl animate-float" // No rounded corners, no bg frame
+            className="shadow-2xl animate-float"
           />
         </div>
       </div>
