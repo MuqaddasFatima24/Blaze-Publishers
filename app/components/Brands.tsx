@@ -1,8 +1,19 @@
 "use client"
 import Image from "next/image"
+import { useEffect, useState } from "react"
 
 export default function Brands() {
   const logos = ["/brand1.png", "/brand2.png", "/brand3.png", "/brand4.png", "/brand5.png"]
+
+  // Optional: for looping animation
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % logos.length)
+    }, 2000) // change logo every 2s
+    return () => clearInterval(interval)
+  }, [logos.length])
 
   return (
     <section className="w-full py-12 bg-white">
