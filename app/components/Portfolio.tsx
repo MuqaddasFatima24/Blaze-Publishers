@@ -27,11 +27,9 @@ export default function Portfolio() {
     return () => clearInterval(interval)
   }, [images.length])
 
-  // Typed cubic-bezier easings (avoid "string" eases)
   const easeInOutCubic: Transition["ease"] = [0.42, 0, 0.58, 1]
   const easeOutCubic: Transition["ease"] = [0.33, 1, 0.68, 1]
 
-  // Variants for premium crossfade (typed)
   const textVariants: Variants = {
     initial: { opacity: 0, y: 6, filter: "blur(2px)" },
     animate: {
@@ -78,7 +76,7 @@ export default function Portfolio() {
               Blaze Publishers
             </motion.h2>
 
-            {/* Changing description (more gap + premium crossfade) */}
+            {/* Changing description */}
             <div aria-live="polite">
               <AnimatePresence mode="wait">
                 <motion.p
@@ -87,8 +85,7 @@ export default function Portfolio() {
                   initial="initial"
                   animate="animate"
                   exit="exit"
-                  className="max-w-xl text-lg text-black leading-relaxed md:leading-loose tracking-normal
-                             font-[Merriweather] mt-2 md:mt-3"
+                  className="font-inter-tight max-w-xl text-lg text-black leading-relaxed md:leading-loose tracking-normal mt-2 md:mt-3"
                 >
                   {texts[current]}
                 </motion.p>
@@ -99,25 +96,25 @@ export default function Portfolio() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10 mt-8">
               <div className="flex items-center gap-4">
                 <img src="/icon1.png" alt="Icon 1" className="w-10 h-10" />
-                <p className="text-black font-[Merriweather]">
+                <p className="font-inter-tight text-black">
                   Publish effortlessly in both print and digital formats.
                 </p>
               </div>
               <div className="flex items-center gap-4">
                 <img src="/icon2.png" alt="Icon 2" className="w-10 h-10" />
-                <p className="text-black font-[Merriweather]">
+                <p className="font-inter-tight text-black">
                   Build a lasting connection with your ideal readers.
                 </p>
               </div>
               <div className="flex items-center gap-4">
                 <img src="/icon3.png" alt="Icon 3" className="w-10 h-10" />
-                <p className="text-black font-[Merriweather]">
+                <p className="font-inter-tight text-black">
                   Simplify distribution with our streamlined process.
                 </p>
               </div>
               <div className="flex items-center gap-4">
                 <img src="/icon4.png" alt="Icon 4" className="w-10 h-10" />
-                <p className="text-black font-[Merriweather]">
+                <p className="font-inter-tight text-black">
                   Establish a powerful, premium author brand identity.
                 </p>
               </div>
@@ -128,8 +125,8 @@ export default function Portfolio() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
-                className="px-8 py-3 rounded-xl bg-orange-400 text-black font-semibold tracking-wide
-                           shadow-lg transition-all duration-300 hover:shadow-xl font-[Cormorant_Garamond]"
+                className="font-inter-tight px-8 py-3 rounded-xl bg-orange-400 text-black font-semibold tracking-wide
+                           shadow-lg transition-all duration-300 hover:shadow-xl"
               >
                 Learn More
               </motion.button>

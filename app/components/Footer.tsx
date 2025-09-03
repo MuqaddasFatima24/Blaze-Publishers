@@ -7,17 +7,17 @@ export default function Footer() {
   return (
     <footer className="bg-white text-gray-800 py-10">
       {/* Top Section */}
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+      <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         {/* Logo */}
         <div className="flex flex-col items-start">
-          <div className="relative w-44 sm:w-52 md:w-60 h-12 sm:h-14 md:h-16">
+          <div className="relative w-64 sm:w-72 md:w-80 h-20 sm:h-24 md:h-28 -ml-2">
             <Image
               src="/logo.png"
               alt="Blaze Publishers"
               fill
-              sizes="(max-width: 640px) 176px, (max-width: 768px) 208px, 240px"
+              sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, 320px"
               className="object-contain"
-              priority={false}
+              priority
             />
           </div>
         </div>
@@ -40,32 +40,16 @@ export default function Footer() {
             Connect With Us
           </h3>
           <div className="flex justify-center md:justify-start gap-4 text-xl sm:text-2xl text-gray-500">
-            <a
-              href="#"
-              aria-label="Facebook"
-              className="hover:text-orange-600 transition-colors"
-            >
+            <a href="#" aria-label="Facebook" className="hover:text-orange-600 transition-colors">
               <FaFacebook />
             </a>
-            <a
-              href="#"
-              aria-label="Twitter"
-              className="hover:text-orange-600 transition-colors"
-            >
+            <a href="#" aria-label="Twitter" className="hover:text-orange-600 transition-colors">
               <FaTwitter />
             </a>
-            <a
-              href="#"
-              aria-label="Instagram"
-              className="hover:text-orange-600 transition-colors"
-            >
+            <a href="#" aria-label="Instagram" className="hover:text-orange-600 transition-colors">
               <FaInstagram />
             </a>
-            <a
-              href="#"
-              aria-label="LinkedIn"
-              className="hover:text-orange-600 transition-colors"
-            >
+            <a href="#" aria-label="LinkedIn" className="hover:text-orange-600 transition-colors">
               <FaLinkedin />
             </a>
             <a
