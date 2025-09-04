@@ -1,21 +1,21 @@
 "use client";
 import Image from "next/image";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { MdEmail, MdLocationOn } from "react-icons/md";
 
 export default function Footer() {
   return (
     <footer className="bg-white text-gray-800 py-10">
       {/* Top Section */}
-      <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+      <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
         {/* Logo */}
-        <div className="flex flex-col items-start">
-          <div className="relative w-64 sm:w-72 md:w-80 h-20 sm:h-24 md:h-28 -ml-2">
+        <div className="flex justify-start items-start">
+          <div className="relative w-52 sm:w-64 md:w-72 h-16 sm:h-20 md:h-24">
             <Image
               src="/logo.png"
               alt="Blaze Publishers"
               fill
-              sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, 320px"
+              sizes="(max-width: 640px) 208px, (max-width: 768px) 256px, 288px"
               className="object-contain"
               priority
             />
@@ -34,30 +34,52 @@ export default function Footer() {
           </ul>
         </div>
 
+        {/* Contact Info */}
+        <div className="flex flex-col items-center md:items-start">
+          <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-900">
+            Contact Us
+          </h3>
+          <p className="flex items-center gap-2 text-gray-600 text-sm sm:text-base">
+            <MdLocationOn className="text-orange-600" /> 30N N Gould St, Sheridan, WY 82801
+          </p>
+          <a
+            href="mailto:info@blazepublishers.com"
+            className="flex items-center gap-2 text-gray-600 hover:text-orange-600 transition-colors text-sm sm:text-base"
+          >
+            <MdEmail className="text-orange-600" /> info@blazepublishers.com
+          </a>
+        </div>
+
         {/* Social Media */}
         <div className="flex flex-col items-center md:items-start">
           <h3 className="text-lg sm:text-xl font-bold mb-3 text-gray-900">
             Connect With Us
           </h3>
           <div className="flex justify-center md:justify-start gap-4 text-xl sm:text-2xl text-gray-500">
-            <a href="#" aria-label="Facebook" className="hover:text-orange-600 transition-colors">
-              <FaFacebook />
-            </a>
-            <a href="#" aria-label="Twitter" className="hover:text-orange-600 transition-colors">
-              <FaTwitter />
-            </a>
-            <a href="#" aria-label="Instagram" className="hover:text-orange-600 transition-colors">
-              <FaInstagram />
-            </a>
-            <a href="#" aria-label="LinkedIn" className="hover:text-orange-600 transition-colors">
-              <FaLinkedin />
-            </a>
             <a
-              href="mailto:info@blazepublishers.com"
-              aria-label="Email"
+              href="https://www.facebook.com/blazepublishers"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
               className="hover:text-orange-600 transition-colors"
             >
-              <MdEmail />
+              <FaFacebook />
+            </a>
+            <a
+              href="https://www.instagram.com/blazepublishers/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="hover:text-orange-600 transition-colors"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="#"
+              aria-label="LinkedIn"
+              className="hover:text-orange-600 transition-colors"
+            >
+              <FaLinkedin />
             </a>
           </div>
         </div>
