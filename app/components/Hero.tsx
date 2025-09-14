@@ -15,7 +15,6 @@ export default function Hero() {
     return () => clearInterval(interval)
   }, [])
 
-  // Lines for fade-in animation
   const lines = [
     "We specialize in transforming imagination into beautifully crafted books.",
     "With premium publishing, editing, and marketing services,",
@@ -35,12 +34,15 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-black"
+      aria-label="Hero banner for Blaze Publishers"  // ✅ SEO/Accessibility
+    >
       {/* Background with fade */}
       <div className="absolute inset-0">
         <Image
           src={images[current]}
-          alt="Hero background"
+          alt="Creative publishing background of books and abstract art" // ✅ More descriptive
           fill
           className="object-cover transition-opacity duration-1000 ease-in-out"
           priority
@@ -99,7 +101,7 @@ export default function Hero() {
             <Image
               key={idx}
               src={src}
-              alt={`Stamp ${idx}`}
+              alt={`Publishing award stamp ${idx + 1}`} // ✅ Clearer alt text
               width={70}
               height={70}
               className="rounded-full object-contain hover:scale-110 transition-transform duration-300 hover:drop-shadow-[0_0_15px_rgba(255,165,0,0.7)]"

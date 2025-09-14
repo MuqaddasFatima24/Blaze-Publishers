@@ -14,20 +14,25 @@ export default function Brands() {
     "/brand8.png",
   ]
 
-  // Optional: for looping animation
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % logos.length)
-    }, 2000) // change logo every 2s
+    }, 2000)
     return () => clearInterval(interval)
   }, [logos.length])
 
   return (
-    <section className="w-full py-16 bg-white">
+    <section
+      className="w-full py-16 bg-white"
+      aria-label="Trusted partner brands carousel"  // ✅ accessibility/SEO
+    >
       {/* Upgraded heading with Inter Tight */}
-      <h2 className="font-inter-tight text-center text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-orange-500 via-black to-orange-600 bg-clip-text text-transparent tracking-wide mb-14">
+      <h2
+        id="trusted-brands"
+        className="font-inter-tight text-center text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-orange-500 via-black to-orange-600 bg-clip-text text-transparent tracking-wide mb-14"
+      >
         Our Trusted Brands
       </h2>
 
@@ -38,9 +43,10 @@ export default function Brands() {
             <Image
               key={i}
               src={logo}
-              alt={`Brand logo ${i + 1}`}
+              alt={`Logo of trusted brand ${i + 1}`} // ✅ descriptive alt
               width={200}
               height={120}
+              loading="lazy"                        // ✅ performance
               className="object-contain transition duration-300 hover:scale-110 hover:drop-shadow-[0_0_20px_rgba(255,102,0,0.6)]"
             />
           ))}

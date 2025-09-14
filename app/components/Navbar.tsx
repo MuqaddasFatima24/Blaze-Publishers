@@ -2,7 +2,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Menu, X } from "lucide-react" // install lucide-react for icons
+import { Menu, X } from "lucide-react"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -17,18 +17,20 @@ export default function Navbar() {
   ]
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
-      {/* Increased navbar height */}
+    <nav
+      className="fixed top-0 left-0 w-full z-50 bg-white shadow-md"
+      aria-label="Main Navigation"  // ✅ Accessibility/SEO
+    >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-24">
-        
         {/* Bigger Logo in the corner */}
         <Link href="/" className="flex items-center">
-          <Image 
-            src="/logo.png" 
-            alt="Blaze Publishers" 
-            width={300}   // logo made bigger
-            height={100} 
+          <Image
+            src="/logo.png"
+            alt="Blaze Publishers company logo"   // ✅ More descriptive alt
+            width={300}
+            height={100}
             className="object-contain"
+            priority   // ✅ Improves Largest Contentful Paint
           />
         </Link>
 
@@ -43,16 +45,16 @@ export default function Navbar() {
               <span className="hover:text-orange-600 transition duration-300">
                 {link.name}
               </span>
-              {/* Animated underline */}
               <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-orange-600 transition-all duration-300 group-hover:w-full"></span>
             </Link>
           ))}
         </div>
 
         {/* Mobile Menu Button */}
-        <button 
-          onClick={() => setIsOpen(!isOpen)} 
+        <button
+          onClick={() => setIsOpen(!isOpen)}
           className="md:hidden text-gray-800"
+          aria-label="Toggle navigation menu"  // ✅ Better accessibility
         >
           {isOpen ? <X size={32} /> : <Menu size={32} />}
         </button>

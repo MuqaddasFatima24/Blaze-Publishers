@@ -3,8 +3,18 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  date: string;
+  time: string;
+  service: string;
+  description: string;
+}
+
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     phone: "",
@@ -22,6 +32,20 @@ export default function ContactPage() {
     "Book Marketing",
   ];
 
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Add real API call here
+    alert("Appointment submitted successfully!");
+    console.log("Form Data:", formData);
+  };
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -33,19 +57,17 @@ export default function ContactPage() {
           backgroundPosition: "center",
         }}
       >
-        {/* Overlay */}
         <div className="absolute inset-0 bg-black/60"></div>
-
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           className="relative z-10 px-6"
         >
-          <h1 className="font-inter-tight text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg leading-tight">
+          <h1 className="font-inter-tight text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg">
             Get in Touch With Us
           </h1>
-          <p className="mt-6 max-w-2xl mx-auto text-base md:text-lg text-white/90 leading-relaxed">
+          <p className="mt-6 max-w-2xl mx-auto text-base md:text-lg text-white/90">
             Whether you&apos;re an aspiring author or a seasoned writer, we’re
             here to support you at every stage of your publishing journey.
           </p>
@@ -96,7 +118,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Form Section */}
+      {/* Contact Form */}
       <section className="py-20 px-6 bg-gradient-to-r from-white via-orange-50 to-white">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -111,58 +133,25 @@ export default function ContactPage() {
 
           <form
             className="grid grid-cols-1 md:grid-cols-2 gap-6"
-            onSubmit={(e) => {
-              e.preventDefault();
-              console.log("Form submitted:", formData);
-            }}
+            onSubmit={handleSubmit}
           >
-            {/* Name */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Your Name
-              </label>
-              <input
-                type="text"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
-                placeholder="Enter your name"
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-              />
-            </div>
-
-            {/* Email */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Email Address
-              </label>
-              <input
-                type="email"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
-                placeholder="Enter your email"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-              />
-            </div>
-
-            {/* Phone */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Phone Number
-              </label>
-              <input
-                type="tel"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
-                placeholder="Enter your phone number"
-                value={formData.phone}
-                onChange={(e) =>
-                  setFormData({ ...formData, phone: e.target.value })
-                }
-              />
-            </div>
+            {[
+              { label: "Your Name", name: "name", type: "text", required: true },
+              { label: "Email Address", name: "email", type: "email", required: true },
+              { label: "Phone Number", name: "phone", type: "tel", required: true },
+            ].map((f) => (
+              <div key={f.name}>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  {f.label}
+                </label>
+                <input
+                  {...f}
+                  value={(formData as any)[f.name]}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
+                />
+              </div>
+            ))}
 
             {/* Service */}
             <div>
@@ -170,50 +159,35 @@ export default function ContactPage() {
                 Service
               </label>
               <select
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
+                name="service"
                 value={formData.service}
-                onChange={(e) =>
-                  setFormData({ ...formData, service: e.target.value })
-                }
+                onChange={handleChange}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
+                required
               >
                 <option value="">Select a service</option>
-                {services.map((service, index) => (
-                  <option key={index} value={service}>
-                    {service}
-                  </option>
+                {services.map((service) => (
+                  <option key={service}>{service}</option>
                 ))}
               </select>
             </div>
 
-            {/* Date */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Preferred Date
-              </label>
-              <input
-                type="date"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
-                value={formData.date}
-                onChange={(e) =>
-                  setFormData({ ...formData, date: e.target.value })
-                }
-              />
-            </div>
-
-            {/* Time */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Preferred Time
-              </label>
-              <input
-                type="time"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
-                value={formData.time}
-                onChange={(e) =>
-                  setFormData({ ...formData, time: e.target.value })
-                }
-              />
-            </div>
+            {/* Date & Time */}
+            {["date", "time"].map((field) => (
+              <div key={field}>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Preferred {field === "date" ? "Date" : "Time"}
+                </label>
+                <input
+                  type={field}
+                  name={field}
+                  value={(formData as any)[field]}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
+                  required
+                />
+              </div>
+            ))}
 
             {/* Description */}
             <div className="md:col-span-2">
@@ -221,17 +195,16 @@ export default function ContactPage() {
                 Description
               </label>
               <textarea
+                name="description"
                 rows={4}
+                value={formData.description}
+                onChange={handleChange}
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
                 placeholder="Tell us a bit about your project..."
-                value={formData.description}
-                onChange={(e) =>
-                  setFormData({ ...formData, description: e.target.value })
-                }
               />
             </div>
 
-            {/* Submit Button */}
+            {/* Submit */}
             <div className="md:col-span-2 flex justify-center">
               <motion.button
                 whileHover={{ scale: 1.05 }}

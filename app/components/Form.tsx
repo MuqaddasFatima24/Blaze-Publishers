@@ -1,26 +1,25 @@
-"use client"
+"use client";
 
-import { useState, type FormEvent, type ChangeEvent } from "react"
-import { motion, AnimatePresence, type Variants, type Transition } from "framer-motion"
+import { useState, type FormEvent, type ChangeEvent } from "react";
+import { motion, AnimatePresence, type Variants, type Transition } from "framer-motion";
 
-// Adjust these to your actual services
 const services = [
   "Book Publishing",
   "Editing & Proofreading",
   "Cover Design",
   "Marketing & Distribution",
-]
+];
 
 type FormData = {
-  name: string
-  email: string
-  phone: string
-  service: string
-  date: string
-  time: string
-  description: string
-  company?: string // honeypot
-}
+  name: string;
+  email: string;
+  phone: string;
+  service: string;
+  date: string;
+  time: string;
+  description: string;
+  company?: string; // honeypot
+};
 
 const initialForm: FormData = {
   name: "",
@@ -30,17 +29,16 @@ const initialForm: FormData = {
   date: "",
   time: "",
   description: "",
-  company: "", // honeypot (bots often fill this)
-}
+  company: "",
+};
 
 export default function Form() {
-  const [formData, setFormData] = useState<FormData>(initialForm)
-  const [loading, setLoading] = useState(false)
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
-  const [message, setMessage] = useState<string>("")
+  const [formData, setFormData] = useState<FormData>(initialForm);
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
 
-  // Framer Motion typesafe easings (avoid plain string eases in TS)
-  const easeInOutCubic: Transition["ease"] = [0.42, 0, 0.58, 1]
+  const easeInOutCubic: Transition["ease"] = [0.42, 0, 0.58, 1];
 
   const cardVariants: Variants = {
     hidden: { opacity: 0, y: 40 },
@@ -49,70 +47,73 @@ export default function Form() {
       y: 0,
       transition: { duration: 0.8, ease: easeInOutCubic },
     },
-  }
+  };
 
   const onChange =
     (key: keyof FormData) =>
     (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-      setFormData((prev) => ({ ...prev, [key]: e.target.value }))
+      setFormData((prev) => ({ ...prev, [key]: e.target.value }));
       if (status !== "idle") {
-        setStatus("idle")
-        setMessage("")
+        setStatus("idle");
+        setMessage("");
       }
-    }
+    };
 
   const validate = () => {
-    if (!formData.name.trim()) return "Please enter your name."
-    if (!/^\S+@\S+\.\S+$/.test(formData.email)) return "Please enter a valid email."
-    if (!formData.phone.trim()) return "Please enter your phone number."
-    if (!formData.service) return "Please choose a service."
-    if (!formData.date) return "Please choose a preferred date."
-    if (!formData.time) return "Please choose a preferred time."
-    return null
-  }
+    if (!formData.name.trim()) return "Please enter your name.";
+    if (!/^\S+@\S+\.\S+$/.test(formData.email)) return "Please enter a valid email.";
+    if (!formData.phone.trim()) return "Please enter your phone number.";
+    if (!formData.service) return "Please choose a service.";
+    if (!formData.date) return "Please choose a preferred date.";
+    if (!formData.time) return "Please choose a preferred time.";
+    return null;
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    // Honeypot: if filled, treat as spam silently
+    // Honeypot check
     if (formData.company && formData.company.length > 0) {
-      setStatus("success")
-      setMessage("Thanks! We’ll be in touch shortly.")
-      setFormData(initialForm)
-      return
+      setStatus("success");
+      setMessage("Thanks! We’ll be in touch shortly.");
+      setFormData(initialForm);
+      return;
     }
 
-    const error = validate()
+    const error = validate();
     if (error) {
-      setStatus("error")
-      setMessage(error)
-      return
+      setStatus("error");
+      setMessage(error);
+      return;
     }
 
     try {
-      setLoading(true)
-      // TODO: implement your API route at /api/appointments
+      setLoading(true);
       const res = await fetch("/api/appointments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-      })
+      });
 
-      if (!res.ok) throw new Error("Network response was not ok")
+      if (!res.ok) throw new Error("Network response was not ok");
 
-      setStatus("success")
-      setMessage("Your appointment request has been submitted. We’ll get back to you soon!")
-      setFormData(initialForm)
-    } catch (err) {
-      setStatus("error")
-      setMessage("Something went wrong. Please try again or contact us directly.")
+      setStatus("success");
+      setMessage("Your appointment request has been submitted. We’ll get back to you soon!");
+      setFormData(initialForm);
+    } catch {
+      setStatus("error");
+      setMessage("Something went wrong. Please try again or contact us directly.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
-    <section className="py-20 px-6 bg-gradient-to-r from-white via-orange-50 to-white">
+    <section
+      id="book-appointment"
+      className="py-20 px-6 bg-gradient-to-r from-white via-orange-50 to-white"
+      aria-labelledby="appointment-heading"
+    >
       <motion.div
         variants={cardVariants}
         initial="hidden"
@@ -120,7 +121,10 @@ export default function Form() {
         viewport={{ once: true }}
         className="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl p-8 md:p-12 border border-orange-100"
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-gray-800 font-inter-tight">
+        <h2
+          id="appointment-heading"
+          className="text-3xl md:text-4xl font-bold mb-8 text-center text-gray-800 font-inter-tight"
+        >
           Book an Appointment
         </h2>
 
@@ -146,7 +150,11 @@ export default function Form() {
           )}
         </AnimatePresence>
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          aria-busy={loading}
+        >
           {/* Honeypot (hidden) */}
           <input
             type="text"
@@ -156,13 +164,18 @@ export default function Form() {
             className="hidden"
             tabIndex={-1}
             autoComplete="off"
+            aria-hidden="true"
           />
 
           {/* Name */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Your Name</label>
+            <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+              Your Name
+            </label>
             <input
+              id="name"
               type="text"
+              autoComplete="name"
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
               placeholder="Enter your name"
               value={formData.name}
@@ -173,9 +186,13 @@ export default function Form() {
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+            <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+              Email Address
+            </label>
             <input
+              id="email"
               type="email"
+              autoComplete="email"
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
               placeholder="Enter your email"
               value={formData.email}
@@ -186,9 +203,13 @@ export default function Form() {
 
           {/* Phone */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
+            <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+              Phone Number
+            </label>
             <input
+              id="phone"
               type="tel"
+              autoComplete="tel"
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
               placeholder="Enter your phone number"
               value={formData.phone}
@@ -199,8 +220,11 @@ export default function Form() {
 
           {/* Service */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Service</label>
+            <label htmlFor="service" className="block text-sm font-semibold text-gray-700 mb-2">
+              Service
+            </label>
             <select
+              id="service"
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
               value={formData.service}
               onChange={onChange("service")}
@@ -217,9 +241,13 @@ export default function Form() {
 
           {/* Date */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Preferred Date</label>
+            <label htmlFor="date" className="block text-sm font-semibold text-gray-700 mb-2">
+              Preferred Date
+            </label>
             <input
+              id="date"
               type="date"
+              min={new Date().toISOString().split("T")[0]}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
               value={formData.date}
               onChange={onChange("date")}
@@ -229,8 +257,11 @@ export default function Form() {
 
           {/* Time */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Preferred Time</label>
+            <label htmlFor="time" className="block text-sm font-semibold text-gray-700 mb-2">
+              Preferred Time
+            </label>
             <input
+              id="time"
               type="time"
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
               value={formData.time}
@@ -241,8 +272,11 @@ export default function Form() {
 
           {/* Description */}
           <div className="md:col-span-2">
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Description</label>
+            <label htmlFor="description" className="block text-sm font-semibold text-gray-700 mb-2">
+              Description
+            </label>
             <textarea
+              id="description"
               rows={4}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
               placeholder="Tell us a bit about your project..."
@@ -258,8 +292,8 @@ export default function Form() {
               whileTap={{ scale: 0.95 }}
               type="submit"
               disabled={loading}
-              className={`bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition-all duration-300
-                hover:from-orange-600 hover:to-orange-700 disabled:opacity-70 disabled:cursor-not-allowed`}
+              className="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition-all duration-300
+                hover:from-orange-600 hover:to-orange-700 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               {loading ? "Submitting..." : "Submit Appointment"}
             </motion.button>
@@ -267,5 +301,5 @@ export default function Form() {
         </form>
       </motion.div>
     </section>
-  )
+  );
 }
