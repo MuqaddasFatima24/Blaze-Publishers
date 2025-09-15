@@ -36,12 +36,16 @@ export default function ContactPage() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    // Type-safe update
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Add real API call here
     alert("Appointment submitted successfully!");
     console.log("Form Data:", formData);
   };
@@ -135,20 +139,23 @@ export default function ContactPage() {
             className="grid grid-cols-1 md:grid-cols-2 gap-6"
             onSubmit={handleSubmit}
           >
-            {[
-              { label: "Your Name", name: "name", type: "text", required: true },
-              { label: "Email Address", name: "email", type: "email", required: true },
-              { label: "Phone Number", name: "phone", type: "tel", required: true },
-            ].map((f) => (
-              <div key={f.name}>
+            {/* Name, Email, Phone */}
+            {["name", "email", "phone"].map((field) => (
+              <div key={field}>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  {f.label}
+                  {field === "name"
+                    ? "Your Name"
+                    : field === "email"
+                    ? "Email Address"
+                    : "Phone Number"}
                 </label>
                 <input
-                  {...f}
-                  value={(formData as any)[f.name]}
+                  type={field === "phone" ? "tel" : field}
+                  name={field}
+                  value={formData[field as keyof FormData]}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
+                  required
                 />
               </div>
             ))}
@@ -167,7 +174,9 @@ export default function ContactPage() {
               >
                 <option value="">Select a service</option>
                 {services.map((service) => (
-                  <option key={service}>{service}</option>
+                  <option key={service} value={service}>
+                    {service}
+                  </option>
                 ))}
               </select>
             </div>
@@ -181,7 +190,7 @@ export default function ContactPage() {
                 <input
                   type={field}
                   name={field}
-                  value={(formData as any)[field]}
+                  value={formData[field as keyof FormData]}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
                   required
