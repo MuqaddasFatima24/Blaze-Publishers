@@ -10,10 +10,10 @@ const interTight = Inter_Tight({
   variable: "--font-inter-tight",
 });
 
-// 🔑 Global site-wide metadata
 export const metadata: Metadata = {
   title: {
-    default: "Blaze Publishers – Professional Book Publishing & Writing Services",
+    default:
+      "Blaze Publishers – Professional Book Publishing & Writing Services",
     template: "%s | Blaze Publishers",
   },
   description:
@@ -30,14 +30,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://yourdomain.com/",
+    url: "https://www.blazepublishers.com/",
     siteName: "Blaze Publishers",
     title: "Blaze Publishers – Professional Book Publishing & Writing Services",
     description:
       "From writing and editing to global distribution, Blaze Publishers helps authors bring their stories to life.",
     images: [
       {
-        url: "https://yourdomain.com/og-default.jpg", // replace with a real image
+        url: "https://www.blazepublishers.com/og-default.jpg", // update if you have a real OG image
         width: 1200,
         height: 630,
         alt: "Blaze Publishers – Books and Publishing",
@@ -49,12 +49,11 @@ export const metadata: Metadata = {
     title: "Blaze Publishers – Professional Book Publishing & Writing Services",
     description:
       "Your one-stop solution for ghostwriting, editing, design, and publishing.",
-    images: ["https://yourdomain.com/og-default.jpg"],
+    images: ["https://www.blazepublishers.com/og-default.jpg"],
   },
   icons: {
-    icon: "/favicon.ico",           // 16×16 or 32×32 favicon
+    icon: "/favicon.ico",      // just your favicon
     shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png", // optional: add apple-touch icon in /public
   },
   robots: {
     index: true,
@@ -70,13 +69,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={interTight.variable}>
       <body className="antialiased text-gray-900 bg-white">
-        {/* Global navigation */}
         <Navbar />
-
-        {/* Page-specific content */}
         {children}
-
-        {/* Global footer */}
         <Footer />
       </body>
     </html>
