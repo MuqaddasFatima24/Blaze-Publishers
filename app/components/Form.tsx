@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent, type ChangeEvent } from "react";
+import { useState, useEffect, type FormEvent, type ChangeEvent } from "react";
 import { motion, AnimatePresence, type Variants, type Transition } from "framer-motion";
 
 const services = [
@@ -18,7 +18,6 @@ type FormData = {
   date: string;
   time: string;
   description: string;
-  company?: string; // honeypot
 };
 
 const initialForm: FormData = {
@@ -29,8 +28,16 @@ const initialForm: FormData = {
   date: "",
   time: "",
   description: "",
-  company: "",
 };
+
+// ⏰ Utility: Convert 24h (HH:mm) → 12h with AM/PM
+function formatTimeTo12Hour(time: string) {
+  if (!time) return "";
+  const [hour, minute] = time.split(":").map(Number);
+  const ampm = hour >= 12 ? "PM" : "AM";
+  const adjustedHour = hour % 12 || 12;
+  return `${adjustedHour}:${minute.toString().padStart(2, "0")} ${ampm}`;
+}
 
 export default function Form() {
   const [formData, setFormData] = useState<FormData>(initialForm);
@@ -48,6 +55,17 @@ export default function Form() {
       transition: { duration: 0.8, ease: easeInOutCubic },
     },
   };
+
+  // ⏱️ Auto-hide status after 5s
+  useEffect(() => {
+    if (status !== "idle") {
+      const timer = setTimeout(() => {
+        setStatus("idle");
+        setMessage("");
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
 
   const onChange =
     (key: keyof FormData) =>
@@ -72,14 +90,6 @@ export default function Form() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Honeypot check
-    if (formData.company && formData.company.length > 0) {
-      setStatus("success");
-      setMessage("Thanks! We’ll be in touch shortly.");
-      setFormData(initialForm);
-      return;
-    }
-
     const error = validate();
     if (error) {
       setStatus("error");
@@ -89,10 +99,17 @@ export default function Form() {
 
     try {
       setLoading(true);
-      const res = await fetch("/api/appointments", {
+
+      // 🕒 Convert time to AM/PM before sending
+      const formattedData = {
+        ...formData,
+        time: formatTimeTo12Hour(formData.time),
+      };
+
+      const res = await fetch("/api/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formattedData),
       });
 
       if (!res.ok) throw new Error("Network response was not ok");
@@ -155,18 +172,6 @@ export default function Form() {
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
           aria-busy={loading}
         >
-          {/* Honeypot (hidden) */}
-          <input
-            type="text"
-            name="company"
-            value={formData.company}
-            onChange={onChange("company")}
-            className="hidden"
-            tabIndex={-1}
-            autoComplete="off"
-            aria-hidden="true"
-          />
-
           {/* Name */}
           <div>
             <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">

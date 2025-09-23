@@ -1,7 +1,7 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface FormData {
   name: string;
@@ -11,6 +11,15 @@ interface FormData {
   time: string;
   service: string;
   description: string;
+}
+
+// ⏰ Utility: Convert 24h (HH:mm) → 12h with AM/PM
+function formatTimeTo12Hour(time: string) {
+  if (!time) return "";
+  const [hour, minute] = time.split(":").map(Number);
+  const ampm = hour >= 12 ? "PM" : "AM";
+  const adjustedHour = hour % 12 || 12;
+  return `${adjustedHour}:${minute.toString().padStart(2, "0")} ${ampm}`;
 }
 
 export default function ContactPage() {
@@ -24,6 +33,10 @@ export default function ContactPage() {
     description: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+
   const services = [
     "Ghost Writing",
     "Book Publishing",
@@ -32,22 +45,70 @@ export default function ContactPage() {
     "Book Marketing",
   ];
 
+  // ⏱️ Auto-hide message after 5 sec
+  useEffect(() => {
+    if (status !== "idle") {
+      const timer = setTimeout(() => {
+        setStatus("idle");
+        setMessage("");
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
+
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
-
-    // Type-safe update
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
+    if (status !== "idle") {
+      setStatus("idle");
+      setMessage("");
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("Appointment submitted successfully!");
-    console.log("Form Data:", formData);
+
+    try {
+      setLoading(true);
+
+      // 🕒 Convert time before sending
+      const formattedData = {
+        ...formData,
+        time: formatTimeTo12Hour(formData.time),
+      };
+
+      const res = await fetch("/api/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formattedData),
+      });
+
+      if (!res.ok) throw new Error("Network response was not ok");
+
+      setStatus("success");
+      setMessage("Your appointment request has been submitted successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        date: "",
+        time: "",
+        service: "",
+        description: "",
+      });
+    } catch {
+      setStatus("error");
+      setMessage("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -135,6 +196,28 @@ export default function ContactPage() {
             Book an Appointment
           </h2>
 
+          {/* Status message */}
+          <AnimatePresence mode="wait">
+            {status !== "idle" && (
+              <motion.div
+                key={status + message}
+                initial={{ opacity: 0, y: 6, filter: "blur(2px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -6, filter: "blur(2px)" }}
+                transition={{ duration: 0.4 }}
+                className={`mb-6 rounded-lg px-4 py-3 text-sm ${
+                  status === "success"
+                    ? "bg-green-50 text-green-700 border border-green-200"
+                    : "bg-red-50 text-red-700 border border-red-200"
+                }`}
+                role="status"
+                aria-live="polite"
+              >
+                {message}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           <form
             className="grid grid-cols-1 md:grid-cols-2 gap-6"
             onSubmit={handleSubmit}
@@ -219,9 +302,10 @@ export default function ContactPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
-                className="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300"
+                disabled={loading}
+                className="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300 disabled:opacity-70"
               >
-                Submit Appointment
+                {loading ? "Submitting..." : "Submit Appointment"}
               </motion.button>
             </div>
           </form>

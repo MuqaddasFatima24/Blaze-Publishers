@@ -1,7 +1,7 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const services = [
   {
@@ -57,6 +57,15 @@ type FormData = {
   description: string;
 };
 
+// ⏰ Convert 24h → 12h AM/PM
+function formatTimeTo12Hour(time: string) {
+  if (!time) return "";
+  const [hour, minute] = time.split(":").map(Number);
+  const ampm = hour >= 12 ? "PM" : "AM";
+  const adjustedHour = hour % 12 || 12;
+  return `${adjustedHour}:${minute.toString().padStart(2, "0")} ${ampm}`;
+}
+
 export default function ServicesPage() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -68,11 +77,59 @@ export default function ServicesPage() {
     description: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+
   const allServices = services.flatMap((s) => s.subServices);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // ⏱️ Auto-hide status after 5 sec
+  useEffect(() => {
+    if (status !== "idle") {
+      const timer = setTimeout(() => {
+        setStatus("idle");
+        setMessage("");
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted", formData);
+
+    try {
+      setLoading(true);
+
+      const formattedData = {
+        ...formData,
+        time: formatTimeTo12Hour(formData.time),
+      };
+
+      const res = await fetch("/api/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formattedData),
+      });
+
+      if (!res.ok) throw new Error("Network error");
+
+      setStatus("success");
+      setMessage("Your appointment request has been submitted successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        date: "",
+        time: "",
+        service: "",
+        description: "",
+      });
+    } catch {
+      setStatus("error");
+      setMessage("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -93,7 +150,8 @@ export default function ServicesPage() {
             Our Services
           </h1>
           <p className="mt-4 text-sm sm:text-base md:text-lg text-gray-200 max-w-2xl mx-auto">
-            From writing to publishing and beyond, we provide comprehensive services to bring your book to life.
+            From writing to publishing and beyond, we provide comprehensive
+            services to bring your book to life.
           </p>
         </div>
       </section>
@@ -162,7 +220,32 @@ export default function ServicesPage() {
             Book an Appointment
           </motion.h2>
 
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Status Message */}
+          <AnimatePresence mode="wait">
+            {status !== "idle" && (
+              <motion.div
+                key={status + message}
+                initial={{ opacity: 0, y: 6, filter: "blur(2px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -6, filter: "blur(2px)" }}
+                transition={{ duration: 0.4 }}
+                className={`mb-6 rounded-lg px-4 py-3 text-sm ${
+                  status === "success"
+                    ? "bg-green-50 text-green-700 border border-green-200"
+                    : "bg-red-50 text-red-700 border border-red-200"
+                }`}
+                role="status"
+                aria-live="polite"
+              >
+                {message}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <form
+            onSubmit={handleSubmit}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Your Name
@@ -172,7 +255,10 @@ export default function ServicesPage() {
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
                 placeholder="Enter your name"
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+                required
               />
             </div>
 
@@ -185,7 +271,10 @@ export default function ServicesPage() {
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
                 placeholder="Enter your email"
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+                required
               />
             </div>
 
@@ -198,7 +287,10 @@ export default function ServicesPage() {
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
                 placeholder="Enter your phone number"
                 value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, phone: e.target.value })
+                }
+                required
               />
             </div>
 
@@ -209,7 +301,10 @@ export default function ServicesPage() {
               <select
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
                 value={formData.service}
-                onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, service: e.target.value })
+                }
+                required
               >
                 <option value="">Select a service</option>
                 {allServices.map((service, i) => (
@@ -228,7 +323,10 @@ export default function ServicesPage() {
                 type="date"
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
                 value={formData.date}
-                onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, date: e.target.value })
+                }
+                required
               />
             </div>
 
@@ -240,7 +338,10 @@ export default function ServicesPage() {
                 type="time"
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
                 value={formData.time}
-                onChange={(e) => setFormData({ ...formData, time: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, time: e.target.value })
+                }
+                required
               />
             </div>
 
@@ -253,7 +354,9 @@ export default function ServicesPage() {
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
                 placeholder="Tell us a bit about your project..."
                 value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, description: e.target.value })
+                }
               />
             </div>
 
@@ -262,9 +365,10 @@ export default function ServicesPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
-                className="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300"
+                disabled={loading}
+                className="bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300 disabled:opacity-70"
               >
-                Submit Appointment
+                {loading ? "Submitting..." : "Submit Appointment"}
               </motion.button>
             </div>
           </form>
