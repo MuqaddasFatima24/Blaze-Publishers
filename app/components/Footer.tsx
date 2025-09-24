@@ -5,6 +5,8 @@ import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { MdEmail, MdLocationOn } from "react-icons/md";
 
 export default function Footer() {
+  const pixelId = "1005200931680502";
+
   return (
     <>
       {/* ✅ Extra SEO meta for the footer section */}
@@ -109,9 +111,19 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider + Copyright */}
-        <div className="border-t border-gray-200 mt-10 pt-5 text-center text-gray-500 text-xs sm:text-sm px-6">
-          © {new Date().getFullYear()} Blaze Publishers. All rights reserved.
+        {/* Divider + Copyright + Pixel Link */}
+        <div className="border-t border-gray-200 mt-10 pt-5 text-center text-gray-500 text-xs sm:text-sm px-6 space-y-2">
+          <p>© {new Date().getFullYear()} Blaze Publishers. All rights reserved.</p>
+
+          {/* ✅ Facebook Pixel link */}
+          <a
+            href="https://www.facebook.com/events_manager/pixel/${pixelId}"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-orange-600 hover:underline"
+          >
+            Facebook Pixel: {pixelId}
+          </a>
         </div>
       </footer>
     </>
