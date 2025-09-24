@@ -4,11 +4,15 @@ import { Inter_Tight } from "next/font/google";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import type { Metadata } from "next";
+import Script from "next/script";
+import Image from "next/image";
 
 const interTight = Inter_Tight({
   subsets: ["latin"],
   variable: "--font-inter-tight",
 });
+
+const FB_PIXEL_ID = "1005200931680502"; // Client ka Pixel ID
 
 export const metadata: Metadata = {
   title: {
@@ -37,7 +41,7 @@ export const metadata: Metadata = {
       "From writing and editing to global distribution, Blaze Publishers helps authors bring their stories to life.",
     images: [
       {
-        url: "https://www.blazepublishers.com/og-default.jpg", // update if you have a real OG image
+        url: "https://www.blazepublishers.com/og-default.jpg",
         width: 1200,
         height: 630,
         alt: "Blaze Publishers – Books and Publishing",
@@ -52,7 +56,7 @@ export const metadata: Metadata = {
     images: ["https://www.blazepublishers.com/og-default.jpg"],
   },
   icons: {
-    icon: "/favicon.ico",      // just your favicon
+    icon: "/favicon.ico",
     shortcut: "/favicon.ico",
   },
   robots: {
@@ -68,6 +72,37 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={interTight.variable}>
+      <head>
+        {/* Facebook Pixel Base Code */}
+        <Script id="fb-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '${FB_PIXEL_ID}');
+            fbq('track', 'PageView');
+          `}
+        </Script>
+
+        {/* Noscript fallback */}
+        <noscript>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <Image
+            height={1}
+            width={1}
+            style={{ display: "none" }}
+            src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
+            alt=""
+            unoptimized
+            priority
+          />
+        </noscript>
+      </head>
       <body className="antialiased text-gray-900 bg-white">
         <Navbar />
         {children}

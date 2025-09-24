@@ -92,6 +92,22 @@ export default function ContactPage() {
 
       if (!res.ok) throw new Error("Network response was not ok");
 
+      // ✅ Facebook Pixel Lead event fire
+      // Define fbq type on window
+      interface WindowWithFbq extends Window {
+        fbq?: (event: string, action: string, data?: Record<string, unknown>) => void;
+      }
+      const win = window as WindowWithFbq;
+      if (typeof window !== "undefined" && win.fbq) {
+        win.fbq("track", "Lead", {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          service: formData.service,
+        });
+        console.log("📌 Facebook Pixel Lead event fired", formData);
+      }
+
       setStatus("success");
       setMessage("Your appointment request has been submitted successfully!");
       setFormData({

@@ -113,6 +113,18 @@ export default function ServicesPage() {
 
       if (!res.ok) throw new Error("Network error");
 
+      // ✅ Fire Facebook Pixel Lead event
+      type WindowWithFbq = Window & { fbq?: (...args: unknown[]) => void };
+      if (typeof window !== "undefined" && (window as WindowWithFbq).fbq) {
+        (window as WindowWithFbq).fbq!("track", "Lead", {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          service: formData.service,
+        });
+        console.log("📌 Facebook Pixel Lead event fired", formData);
+      }
+
       setStatus("success");
       setMessage("Your appointment request has been submitted successfully!");
       setFormData({

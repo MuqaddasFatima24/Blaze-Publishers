@@ -117,6 +117,21 @@ export default function Form() {
       setStatus("success");
       setMessage("Your appointment request has been submitted. We’ll get back to you soon!");
       setFormData(initialForm);
+
+      // ✅ Facebook Pixel Lead Event Trigger
+      interface WindowWithFbq extends Window {
+        fbq?: (event: string, action: string, data?: Record<string, unknown>) => void;
+      }
+      const win = window as WindowWithFbq;
+      if (typeof window !== "undefined" && typeof win.fbq !== "undefined") {
+        win.fbq?.("track", "Lead", {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          service: formData.service,
+        });
+        console.log("📌 Facebook Pixel Lead event fired", formData);
+      }
     } catch {
       setStatus("error");
       setMessage("Something went wrong. Please try again or contact us directly.");

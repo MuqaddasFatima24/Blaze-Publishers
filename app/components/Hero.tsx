@@ -7,7 +7,7 @@ export default function Hero() {
   const images = ["/background.png", "/background1.png", "/background2.png"]
   const [current, setCurrent] = useState(0)
 
-  // background slider
+  // Background slider
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length)
@@ -35,14 +35,14 @@ export default function Hero() {
 
   return (
     <section
-      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-black"
-      aria-label="Hero banner for Blaze Publishers"  // ✅ SEO/Accessibility
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-black pb-16 sm:pb-20 md:pb-24"
+      aria-label="Hero banner for Blaze Publishers"
     >
-      {/* Background with fade */}
+      {/* Background */}
       <div className="absolute inset-0">
         <Image
           src={images[current]}
-          alt="Creative publishing background of books and abstract art" // ✅ More descriptive
+          alt="Creative publishing background of books and abstract art"
           fill
           className="object-cover transition-opacity duration-1000 ease-in-out"
           priority
@@ -52,18 +52,18 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 md:px-10 max-w-5xl w-full">
-        {/* Heading */}
-        <h1 className="mt-16 font-inter-tight text-4xl sm:text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-orange-400 via-yellow-300 to-green-400 bg-clip-text text-transparent animate-gradient-x transition-all duration-500 hover:tracking-wider">
+        {/* Heading with top/bottom margin for visibility */}
+        <h1 className="mt-32 sm:mt-28 md:mt-32 lg:mt-36 mb-6 sm:mb-8 font-inter-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-orange-400 via-yellow-300 to-green-400 bg-clip-text text-transparent animate-gradient-x">
           Blaze Publishers
         </h1>
 
         {/* Subheading */}
-        <p className="mt-4 sm:mt-5 font-bold text-base sm:text-lg md:text-xl text-white italic">
+        <p className="mb-6 font-bold text-base sm:text-lg md:text-xl lg:text-2xl text-white italic">
           Turning Your Stories Into Timeless Books
         </p>
 
-        {/* Animated text lines */}
-        <div className="mt-5 sm:mt-6 text-sm sm:text-base md:text-lg text-white max-w-3xl mx-auto leading-relaxed space-y-2 px-2 sm:px-0">
+        {/* Animated lines */}
+        <div className="mb-8 text-sm sm:text-base md:text-lg lg:text-xl text-white max-w-3xl mx-auto leading-relaxed space-y-2 px-2 sm:px-0">
           {lines.map((line, idx) => (
             <p
               key={idx}
@@ -77,7 +77,7 @@ export default function Hero() {
         </div>
 
         {/* Buttons */}
-        <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
+        <div className="mb-10 flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
           <Link
             href="/services"
             className="px-6 py-3 rounded-xl text-white font-medium backdrop-blur-lg bg-white/10 border border-white/20 shadow-lg hover:scale-105 hover:bg-white/20 transition text-sm sm:text-base"
@@ -92,16 +92,16 @@ export default function Hero() {
           </Link>
         </div>
 
-        {/* Divider line */}
-        <div className="mt-5 sm:mt-6 w-28 sm:w-40 h-[2px] mx-auto bg-gradient-to-r from-transparent via-orange-400 to-transparent animate-pulse" />
+        {/* Divider */}
+        <div className="mb-10 w-28 sm:w-40 h-[2px] mx-auto bg-gradient-to-r from-transparent via-orange-400 to-transparent animate-pulse" />
 
-        {/* Stamps Row */}
-        <div className="mt-8 sm:mt-10 flex flex-wrap justify-center gap-4 sm:gap-6">
+        {/* Stamps */}
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
           {["/stamp.png", "/stamp1.png", "/stamp2.png"].map((src, idx) => (
             <Image
               key={idx}
               src={src}
-              alt={`Publishing award stamp ${idx + 1}`} // ✅ Clearer alt text
+              alt={`Publishing award stamp ${idx + 1}`}
               width={70}
               height={70}
               className="rounded-full object-contain hover:scale-110 transition-transform duration-300 hover:drop-shadow-[0_0_15px_rgba(255,165,0,0.7)]"

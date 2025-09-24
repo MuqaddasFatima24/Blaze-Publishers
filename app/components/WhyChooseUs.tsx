@@ -12,41 +12,27 @@ export default function WhyChooseUs() {
           name="description"
           content="Discover why authors choose Blaze Publishers. We deliver cutting-edge technology, unmatched performance, and trusted excellence in book publishing and self-publishing services."
         />
-        <meta
-          name="keywords"
-          content="why choose Blaze Publishers, book publishing company USA, self publishing services, cutting edge technology, unmatched performance"
-        />
-        <meta property="og:title" content="Why Choose Blaze Publishers" />
-        <meta
-          property="og:description"
-          content="Premium publishing solutions with innovation, speed, and reliability. Learn why authors trust Blaze Publishers."
-        />
-        <meta property="og:type" content="website" />
       </Head>
 
       <section
         id="why-choose-us"
         aria-label="Reasons to choose Blaze Publishers"
-        className="relative py-20 bg-cover bg-center"
+        className="relative py-16 sm:py-20 lg:py-28 bg-cover bg-center"
         style={{ backgroundImage: "url('/background7.png')" }}
       >
-        {/* Black overlay for readability */}
-        <div className="absolute inset-0 bg-black/60"></div>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/70"></div>
 
-        <div className="relative container mx-auto px-6 text-center text-white">
-          {/* Animated Premium Heading */}
+        <div className="relative container mx-auto px-4 sm:px-6 lg:px-10 text-center text-white">
+          {/* Heading */}
           <motion.h2
             initial={{ opacity: 0, y: -50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="font-inter-tight text-5xl md:text-6xl font-extrabold tracking-wide mb-8 drop-shadow-lg 
-                       transition-all duration-500 hover:scale-105 hover:tracking-wider"
+            className="font-inter-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 sm:mb-8 drop-shadow-lg"
           >
-            <span className="hover:text-orange-500 transition-colors duration-500">
-              Why Choose
-            </span>{" "}
-            <span className="text-orange-500">Blaze Publishers</span>
+            <span className="text-orange-500">Why Choose</span> Blaze Publishers
           </motion.h2>
 
           {/* Description */}
@@ -55,7 +41,7 @@ export default function WhyChooseUs() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="max-w-3xl mx-auto text-lg leading-relaxed text-gray-200 mb-16"
+            className="max-w-3xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed text-gray-200 mb-12 sm:mb-16"
           >
             Blaze Publishers delivers <strong>premium book publishing services</strong> with a focus
             on innovation, speed, and reliability. Whether you need <strong>Amazon self-publishing</strong>,
@@ -63,55 +49,41 @@ export default function WhyChooseUs() {
             expert guidance to help your book reach readers everywhere.
           </motion.p>
 
-          {/* Features */}
-          <div className="grid md:grid-cols-3 gap-10 text-left">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: true }}
-              className="p-6 rounded-2xl bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-300 shadow-lg"
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <Rocket className="w-7 h-7 text-white" aria-hidden="true" />
-                <h3 className="text-2xl font-semibold text-white">Cutting-Edge Technology</h3>
-              </div>
-              <p className="text-gray-300">
-                We integrate the latest publishing tech and trends to keep your book ahead of the competition.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="p-6 rounded-2xl bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-300 shadow-lg"
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <Zap className="w-7 h-7 text-white" aria-hidden="true" />
-                <h3 className="text-2xl font-semibold text-white">Unmatched Performance</h3>
-              </div>
-              <p className="text-gray-300">
-                Our solutions are optimized for speed, scalability, and performance, ensuring a seamless publishing journey.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="p-6 rounded-2xl bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-300 shadow-lg"
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <Star className="w-7 h-7 text-white" aria-hidden="true" />
-                <h3 className="text-2xl font-semibold text-white">Trusted Excellence</h3>
-              </div>
-              <p className="text-gray-300">
-                Authors worldwide trust us for transparent processes and results that speak louder than words.
-              </p>
-            </motion.div>
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+            {/* Card Template */}
+            {[
+              {
+                icon: <Rocket className="w-6 h-6 sm:w-7 sm:h-7 text-orange-400" aria-hidden="true" />,
+                title: "Cutting-Edge Technology",
+                desc: "We integrate the latest publishing tech and trends to keep your book ahead of the competition."
+              },
+              {
+                icon: <Zap className="w-6 h-6 sm:w-7 sm:h-7 text-orange-400" aria-hidden="true" />,
+                title: "Unmatched Performance",
+                desc: "Our solutions are optimized for speed, scalability, and performance, ensuring a seamless publishing journey."
+              },
+              {
+                icon: <Star className="w-6 h-6 sm:w-7 sm:h-7 text-orange-400" aria-hidden="true" />,
+                title: "Trusted Excellence",
+                desc: "Authors worldwide trust us for transparent processes and results that speak louder than words."
+              }
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: idx * 0.2 }}
+                viewport={{ once: true }}
+                className="w-full h-full p-5 sm:p-6 rounded-2xl bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all duration-300 shadow-lg text-left flex flex-col justify-start"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  {item.icon}
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-semibold">{item.title}</h3>
+                </div>
+                <p className="text-sm sm:text-base md:text-lg text-gray-300">{item.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
