@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Head from "next/head";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
-import { MdEmail, MdLocationOn } from "react-icons/md";
+import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
 
 export default function Footer() {
   const pixelId = "1005200931680502";
@@ -68,6 +68,13 @@ export default function Footer() {
               30N N Gould St, Sheridan, WY 82801
             </p>
             <a
+              href="tel:+12294660201"
+              className="flex items-center gap-2 text-gray-600 hover:text-orange-600 transition-colors text-sm sm:text-base"
+            >
+              <MdPhone className="text-orange-600" />
+              +1 229 466-0201
+            </a>
+            <a
               href="mailto:info@blazepublishers.com"
               className="flex items-center gap-2 text-gray-600 hover:text-orange-600 transition-colors text-sm sm:text-base"
             >
@@ -111,7 +118,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider + Copyright + Pixel Link */}
+        {/* Divider + Copyright */}
         <div className="border-t border-gray-200 mt-10 pt-5 text-center text-gray-500 text-xs sm:text-sm px-6 space-y-2">
           <p>© {new Date().getFullYear()} Blaze Publishers. All rights reserved.</p>
         </div>
