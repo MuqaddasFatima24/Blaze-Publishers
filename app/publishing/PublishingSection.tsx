@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 // If you want stricter typing:
 type Service = {
@@ -155,12 +156,15 @@ export default function PublishingSection() {
             <p className="text-gray-600 text-base md:text-lg mb-6 leading-relaxed">
               We handle the technical work so you can focus on your story. If you have been waiting for the perfect moment to publish your book, this is it. Let us bring your story to life together.
             </p>
+            
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="mt-4 px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full font-semibold text-white shadow-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300"
             >
-              Get Started
+              <Link href="/contact">
+                Get Started
+              </Link>
             </motion.button>
           </motion.div>
 

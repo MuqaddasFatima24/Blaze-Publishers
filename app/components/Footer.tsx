@@ -34,13 +34,13 @@ export default function Footer() {
         <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
           {/* Logo */}
           <div className="flex justify-start items-start">
-            <div className="relative w-52 sm:w-64 md:w-72 h-16 sm:h-20 md:h-24">
+            <div className="relative h-14 w-40 sm:h-16 sm:w-48 md:h-20 md:w-60">
               <Image
                 src="/logo.png"
                 alt="Blaze Publishers company logo"
                 fill
-                sizes="(max-width: 640px) 208px, (max-width: 768px) 256px, 288px"
-                className="object-contain"
+                sizes="(max-width: 640px) 160px, (max-width: 768px) 192px, 240px"
+                className="object-contain drop-shadow-[0_18px_36px_-28px_rgba(15,23,42,0.9)]"
                 priority
               />
             </div>
