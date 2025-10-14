@@ -11,12 +11,9 @@ import {
   PenLine,
   Users,
   Palette,
-  BookAudio,
-  Presentation,
   FileEdit,
   Medal,
   ShieldCheck,
-  GraduationCap,
   Star,
 } from "lucide-react"
 
@@ -67,29 +64,6 @@ const services = [
   },
 ]
 
-const expertiseHighlights = [
-  {
-    title: "Interactive Storyboarding",
-    copy: "Frame-by-frame planning that aligns dialogue, narration, and illustration beats.",
-    icon: Presentation,
-  },
-  {
-    title: "Age-Appropriate Language",
-    copy: "Pedagogy-informed vocabulary and sentence structure for each reading level.",
-    icon: GraduationCap,
-  },
-  {
-    title: "Diverse Character Design",
-    copy: "Inclusive casts and culturally respectful representation in every world we build.",
-    icon: Users,
-  },
-  {
-    title: "Audio & Read-Aloud Assets",
-    copy: "Voiceover production, sound design, and interactive audio books for multi-sensory learning.",
-    icon: BookAudio,
-  },
-]
-
 const specializedServices = [
   {
     title: "Illustration Direction",
@@ -119,12 +93,12 @@ const promisePillars = [
 ]
 
 const portfolioItems = [
-  { title: "Undersea World", image: "/portfolio-book-1.jpg" },
-  { title: "Emi's Beach Adventure", image: "/portfolio-book-2.jpg" },
-  { title: "Children Tales Volume 3", image: "/portfolio-book-3.jpg" },
-  { title: "Your Own Backyard", image: "/portfolio-book-4.jpg" },
-  { title: "Study Time", image: "/portfolio-book-5.jpg" },
-  { title: "Cooking with Friends", image: "/portfolio-book-6.jpg" },
+  { image: "/children-book1.jpg" },
+  { image: "/children-book2.jpg" },
+  { image: "/children-book3.jpg" },
+  { image: "/children-book4.jpg" },
+  { image: "/children-book5.jpg" },
+  { image: "/children-book6.jpg" },
 ]
 
 const servicesList = [
@@ -269,7 +243,7 @@ export default function ChildrenBookPage() {
             <div className="absolute inset-0 translate-x-6 translate-y-6 rounded-[36px] bg-gradient-to-br from-orange-200/40 via-orange-300/25 to-amber-200/45 blur-3xl opacity-70" />
             <div className="relative overflow-hidden rounded-[28px] border border-white/70 bg-white/70 p-4 shadow-[0_32px_64px_-38px_rgba(15,23,42,0.45)] backdrop-blur">
               <Image
-                src="/hero-book-page.jpg"
+                src="/hero-children.jpg"
                 alt="Colorful children's book illustration scene with kids and balloons"
                 width={780}
                 height={580}
@@ -320,7 +294,7 @@ export default function ChildrenBookPage() {
         </div>
       </section>
 
-      <section className="bg-white py-18 py-20">
+      <section className="bg-white py-20">
         <div className="mx-auto max-w-6xl px-6 md:px-10">
           <div className="space-y-4 text-center">
             <h2 className="font-inter-tight text-3xl font-extrabold text-slate-900 sm:text-4xl">
@@ -386,20 +360,17 @@ export default function ChildrenBookPage() {
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {portfolioItems.map((item) => (
               <div
-                key={item.title}
+                key={item.image}
                 className="group relative overflow-hidden rounded-[26px] border border-slate-100 bg-slate-900 shadow-[0_28px_56px_-38px_rgba(15,23,42,0.65)] transition hover:-translate-y-1 hover:shadow-[0_32px_60px_-36px_rgba(234,88,12,0.55)]"
               >
                 <Image
                   src={item.image}
-                  alt={`${item.title} children book cover`}
+                  alt="Children's book illustration sample"
                   width={420}
                   height={520}
                   className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/85 via-slate-900/20 to-transparent p-4">
-                  <p className="text-sm font-semibold text-white">{item.title}</p>
-                </div>
               </div>
             ))}
           </div>
@@ -441,7 +412,7 @@ export default function ChildrenBookPage() {
           </div>
           <div className="relative overflow-hidden rounded-[32px] border border-orange-100 bg-orange-50 p-6 shadow-[0_36px_70px_-38px_rgba(234,88,12,0.45)]">
             <Image
-              src="/kick-start.png"
+              src="/illustration-book.jpg"
               alt="Illustration of an author planning a children book launch"
               width={520}
               height={420}
