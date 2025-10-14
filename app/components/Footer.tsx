@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Head from "next/head";
-import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
 
 export default function Footer() {
@@ -13,11 +13,11 @@ export default function Footer() {
       <Head>
         <meta
           name="description"
-          content="Contact Blaze Publishers for ebook writing, editing, and publishing services. Connect with us on Facebook, Instagram, or LinkedIn."
+          content="Contact Blaze Publishers for ebook writing, editing, and publishing services. Connect with us on Facebook, Instagram, Twitter, or LinkedIn."
         />
         <meta
           name="keywords"
-          content="Blaze Publishers, ebook writing, editing, publishing, contact, Facebook, Instagram, LinkedIn"
+          content="Blaze Publishers, ebook writing, editing, publishing, contact, Facebook, Instagram, Twitter, LinkedIn"
         />
         <meta property="og:site_name" content="Blaze Publishers" />
       </Head>
@@ -68,11 +68,18 @@ export default function Footer() {
               30N N Gould St, Sheridan, WY 82801
             </p>
             <a
-              href="tel:+12294660201"
+              href="tel:+13072151582"
               className="flex items-center gap-2 text-gray-600 hover:text-orange-600 transition-colors text-sm sm:text-base"
             >
               <MdPhone className="text-orange-600" />
-              +1 229 466-0201
+              +1 307 215-1582
+            </a>
+            <a
+              href="tel:+13072910573"
+              className="flex items-center gap-2 text-gray-600 hover:text-orange-600 transition-colors text-sm sm:text-base"
+            >
+              <MdPhone className="text-orange-600" />
+              +1 307 291-0573
             </a>
             <a
               href="mailto:info@blazepublishers.com"
@@ -106,6 +113,15 @@ export default function Footer() {
                 className="hover:text-orange-600 transition-colors"
               >
                 <FaInstagram />
+              </a>
+              <a
+                href="https://x.com/Blazepublishers"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit our Twitter profile"
+                className="hover:text-orange-600 transition-colors"
+              >
+                <FaTwitter />
               </a>
               <a
                 href="#"

@@ -423,66 +423,77 @@ export default function ChildrenBookPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-slate-950 py-20 text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#f97316_0%,#0f172a_70%)] opacity-60" />
-        <div className="relative mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-[1fr_0.9fr] md:px-10">
-          <div className="space-y-6">
-            <h2 className="font-inter-tight text-3xl font-extrabold sm:text-4xl">
-              Epic Comic Artistry Excellence
-            </h2>
-            <p className="text-base text-slate-200 sm:text-lg">
-              Our illustrators, writers, and editors collaborate in studio to deliver cohesive, character-driven stories
-              that delight young readers and meet publishing standards.
-            </p>
-            <div className="grid gap-4 text-sm text-slate-200">
-              {[
-                "Narrative planning that blends humor, heart, and learning outcomes.",
-                "Panel composition and sequential art optimized for print and digital devices.",
-                "Rigorous editorial quality control including fact-checking and sensitivity reads.",
-                "Marketing playbooks with social posts, classroom guides, and launch emails.",
-                "Post-launch analytics to track reader engagement and gather feedback.",
-              ].map((item) => (
-                <div key={item} className="flex items-start gap-3 rounded-3xl bg-white/5 p-4">
-                  <Medal className="mt-1 h-5 w-5 flex-shrink-0 text-orange-300" />
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
+     <section className="relative overflow-hidden bg-slate-950 py-20 text-white">
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#f97316_0%,#0f172a_70%)] opacity-60" />
+  <div className="relative mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-[1fr_0.9fr] md:px-10">
+    <div className="space-y-6">
+      <h2 className="font-inter-tight text-3xl font-extrabold sm:text-4xl">
+        Blaze Publishers - Author Websites, Publishing & Editing
+      </h2>
+      <p className="text-base text-slate-200 sm:text-lg">
+        Our designers, writers, and editors work side-by-side to craft compelling books and
+        professional author brands — from polished manuscripts to high-impact launches.
+      </p>
+      <div className="grid gap-4 text-sm text-slate-200">
+        {[
+          "Custom author website design tailored to your voice and genre.",
+          "Manuscript development and ghostwriting with clear structure and authentic tone.",
+          "Editing services: developmental, copyediting, and final proofreading.",
+          "Cover design and interior layout for print and ebook (KDP-ready).",
+          "Publishing setup and global distribution across major retailers.",
+          "Marketing playbooks with social posts, email copy, press notes, and launch plan.",
+        ].map((item) => (
+          <div key={item} className="flex items-start gap-3 rounded-3xl bg-white/5 p-4">
+            <Medal className="mt-1 h-5 w-5 flex-shrink-0 text-orange-300" />
+            <span>{item}</span>
           </div>
-          <div className="relative rounded-[32px] border border-white/10 bg-white/5 p-8 shadow-[0_28px_60px_-38px_rgba(8,47,73,0.7)] backdrop-blur">
-            <div className="space-y-5 text-sm text-slate-200">
-              <div className="flex items-center gap-3 rounded-2xl bg-white/5 p-4">
-                <Palette className="h-5 w-5 text-orange-300" />
-                <div>
-                  <p className="font-semibold text-white">Signature Illustration Hand-Offs</p>
-                  <p className="text-xs text-slate-300">Layered files, color keys, and animation-ready assets.</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 rounded-2xl bg-white/5 p-4">
-                <PenLine className="h-5 w-5 text-orange-300" />
-                <div>
-                  <p className="font-semibold text-white">Author Collaboration</p>
-                  <p className="text-xs text-slate-300">Weekly milestone reviews and feedback-driven revisions.</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 rounded-2xl bg-white/5 p-4">
-                <Rocket className="h-5 w-5 text-orange-300" />
-                <div>
-                  <p className="font-semibold text-white">Launch Strategy Toolkit</p>
-                  <p className="text-xs text-slate-300">Press releases, social templates, and influencer outreach.</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 rounded-2xl bg-white/5 p-4">
-                <ShieldCheck className="h-5 w-5 text-orange-300" />
-                <div>
-                  <p className="font-semibold text-white">Quality Assurance</p>
-                  <p className="text-xs text-slate-300">Preflight checks, accessibility reviews, and print proofs.</p>
-                </div>
-              </div>
-            </div>
+        ))}
+      </div>
+    </div>
+
+    <div className="relative rounded-[32px] border border-white/10 bg-white/5 p-8 shadow-[0_28px_60px_-38px_rgba(8,47,73,0.7)] backdrop-blur">
+      <div className="space-y-5 text-sm text-slate-200">
+        <div className="flex items-center gap-3 rounded-2xl bg-white/5 p-4">
+          <Palette className="h-5 w-5 text-orange-300" />
+          <div>
+            <p className="font-semibold text-white">Author Website Design</p>
+            <p className="text-xs text-slate-300">
+              Fast, modern sites with bio, book pages, newsletter, and media kit.
+            </p>
           </div>
         </div>
-      </section>
+        <div className="flex items-center gap-3 rounded-2xl bg-white/5 p-4">
+          <PenLine className="h-5 w-5 text-orange-300" />
+          <div>
+            <p className="font-semibold text-white">Writing & Editing</p>
+            <p className="text-xs text-slate-300">
+              Ghostwriting, developmental edits, copyedits, and final proofreading.
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-3 rounded-2xl bg-white/5 p-4">
+          <Rocket className="h-5 w-5 text-orange-300" />
+          <div>
+            <p className="font-semibold text-white">Publishing & Launch</p>
+            <p className="text-xs text-slate-300">
+              KDP setup, metadata, categories, and a step-by-step launch strategy.
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-3 rounded-2xl bg-white/5 p-4">
+          <ShieldCheck className="h-5 w-5 text-orange-300" />
+          <div>
+            <p className="font-semibold text-white">Quality Assurance</p>
+            <p className="text-xs text-slate-300">
+              Preflight checks, accessibility reviews, and print/ebook proofing.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       <section className="bg-slate-100 py-20">
         <div className="mx-auto max-w-6xl px-6 md:px-10">
