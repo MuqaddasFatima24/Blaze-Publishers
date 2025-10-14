@@ -12,7 +12,8 @@ const interTight = Inter_Tight({
   variable: "--font-inter-tight",
 });
 
-const FB_PIXEL_ID = "1005200931680502"; // Client ka Pixel ID
+const FB_PIXEL_ID = "1005200931680502"; // Facebook Pixel ID
+const ADSENSE_PUB_ID = "ca-pub-8108022846497938"; // ✅ Your AdSense publisher ID
 
 export const metadata: Metadata = {
   title: {
@@ -63,6 +64,10 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  other: {
+    // ✅ Important for AdSense site verification
+    "google-adsense-account": ADSENSE_PUB_ID,
+  },
 };
 
 export default function RootLayout({
@@ -73,7 +78,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={interTight.variable}>
       <head>
-        {/* Facebook Pixel Base Code */}
+        {/* ✅ Google AdSense Loader */}
+        <Script
+          id="adsense-script"
+          async
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_PUB_ID}`}
+        />
+
+        {/* ✅ Facebook Pixel Code */}
         <Script id="fb-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
@@ -89,9 +103,8 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* Noscript fallback */}
+        {/* Noscript fallback for Facebook */}
         <noscript>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <Image
             height={1}
             width={1}
@@ -103,6 +116,7 @@ export default function RootLayout({
           />
         </noscript>
       </head>
+
       <body className="antialiased text-gray-900 bg-white">
         <Navbar />
         {children}
