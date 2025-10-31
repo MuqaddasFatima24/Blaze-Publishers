@@ -113,13 +113,10 @@ export const metadata: Metadata = {
       "Your one-stop solution for ghostwriting, editing, design, and publishing.",
     images: ["https://www.blazepublishers.com/og-default.jpg"],
   },
-    icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" }, // fallback / old browsers
-      { url: "/favicon.png", type: "image/png", sizes: "32x32" }, // modern PNG
-      { url: "/favicon.svg", type: "image/svg+xml" }, // vector
-    ],
-    apple: "/apple-touch-icon.png", // optional (180x180 PNG)
+  icons: {
+    icon: [{ url: "/favicon.ico", type: "image/x-icon" }], // served from /public/favicon.ico
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
    robots: {
     index: true,
