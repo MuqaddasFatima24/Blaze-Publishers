@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: "Blaze Publishers – Professional Book Publishing & Writing Services",
     description:
       "From writing and editing to global distribution, Blaze Publishers turns your ideas into polished books.",
-    url: "https://yourdomain.com/",
+    url: "https://blazepublishers.com",
     siteName: "Blaze Publishers",
   },
 };

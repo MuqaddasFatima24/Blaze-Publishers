@@ -92,7 +92,7 @@ export const metadata: Metadata = {
    openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://www.blazepublishers.com/",
+    url: "https://blazepublishers.com",
     siteName: "Blaze Publishers",
     title: "Blaze Publishers – Professional Book Publishing & Writing Services",
     description:

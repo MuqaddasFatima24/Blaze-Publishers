@@ -13,14 +13,11 @@ export const metadata: Metadata = {
     "book publishing services",
     "self publishing help",
   ],
-  alternates: {
-    canonical: "https://blazepublishers.com/learnmore",
-  },
   openGraph: {
     title: "Learn More About Blaze Publishers",
     description:
       "Professional ebook writing, editing, and publishing services to help your story reach global readers.",
-    url: "https://blazepublishers.com/learnmore",
+    url: "https://blazepublishers.com",
     siteName: "Blaze Publishers",
     locale: "en_US",
     type: "website",
