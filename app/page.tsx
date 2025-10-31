@@ -20,21 +20,6 @@ export const metadata: Metadata = {
       "From writing and editing to global distribution, Blaze Publishers turns your ideas into polished books.",
     url: "https://yourdomain.com/",
     siteName: "Blaze Publishers",
-    images: [
-      {
-        url: "https://yourdomain.com/og-home.jpg", // replace with a real OG image
-        width: 1200,
-        height: 630,
-        alt: "Blaze Publishers Homepage Preview",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Blaze Publishers – Professional Book Publishing & Writing Services",
-    description:
-      "Your one-stop solution for ghostwriting, editing, design, and publishing.",
-    images: ["https://yourdomain.com/og-home.jpg"], // same OG image or another
   },
 };
 

@@ -97,26 +97,14 @@ export const metadata: Metadata = {
     title: "Blaze Publishers – Professional Book Publishing & Writing Services",
     description:
       "From writing and editing to global distribution, Blaze Publishers helps authors bring their stories to life.",
-    images: [
-      {
-        url: "https://www.blazepublishers.com/og-default.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Blaze Publishers – Books and Publishing",
-      },
+  },
+   icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" }, // fallback / old browsers
+      { url: "/favicon.png", type: "image/png", sizes: "32x32" }, // modern PNG
+      { url: "/favicon.svg", type: "image/svg+xml" }, // vector
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Blaze Publishers – Professional Book Publishing & Writing Services",
-    description:
-      "Your one-stop solution for ghostwriting, editing, design, and publishing.",
-    images: ["https://www.blazepublishers.com/og-default.jpg"],
-  },
-  icons: {
-    icon: [{ url: "/favicon.ico", type: "image/x-icon" }], // served from /public/favicon.ico
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    apple: "/apple-touch-icon.png", // optional (180x180 PNG)
   },
    robots: {
     index: true,
