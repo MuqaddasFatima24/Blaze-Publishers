@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
-// 🔑 SEO / Metadata (server-side, works perfectly in the App Router)
+// SEO metadata (server-side, works in the App Router)
 export const metadata: Metadata = {
-  title: "Blaze Publishers – Professional Book Publishing & Writing Services",
+  title: "Blaze Publishers - Professional Book Publishing & Writing Services",
   description:
     "Blaze Publishers offers expert ghostwriting, editing, design, and marketing to bring your story to life. Publish your book globally with our complete end-to-end services.",
   keywords: [
@@ -10,16 +10,31 @@ export const metadata: Metadata = {
     "ghostwriting",
     "ebook publishing",
     "book editing",
-    "children’s books",
+    "children's books",
     "author services",
     "Blaze Publishers",
   ],
   openGraph: {
-    title: "Blaze Publishers – Professional Book Publishing & Writing Services",
+    title: "Blaze Publishers - Professional Book Publishing & Writing Services",
     description:
       "From writing and editing to global distribution, Blaze Publishers turns your ideas into polished books.",
-    url: "https://blazepublishers.com",
+    url: "https://www.blazepublishers.com/",
     siteName: "Blaze Publishers",
+    images: [
+      {
+        url: "https://www.blazepublishers.com/logo1.png",
+        width: 512,
+        height: 512,
+        alt: "Blaze Publishers logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blaze Publishers - Professional Book Publishing & Writing Services",
+    description:
+      "Your one-stop solution for ghostwriting, editing, design, and publishing.",
+    images: ["https://www.blazepublishers.com/logo1.png"],
   },
 };
 
