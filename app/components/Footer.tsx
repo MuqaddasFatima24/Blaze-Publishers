@@ -1,23 +1,23 @@
-"use client";
-import Image from "next/image";
-import Head from "next/head";
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
+"use client"
+
+import Image from "next/image"
+import Head from "next/head"
+import Link from "next/link"
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa"
+import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md"
 
 export default function Footer() {
-  const pixelId = "1005200931680502";
-
   return (
     <>
-      {/* ✅ Extra SEO meta for the footer section */}
+      {/* ✅ SEO meta for footer */}
       <Head>
         <meta
           name="description"
-          content="Contact Blaze Publishers for ebook writing, editing, and publishing services. Connect with us on Facebook, Instagram, Twitter, or LinkedIn."
+          content="Contact Blaze Publishers for ebook writing, editing, and publishing services. Learn about our terms, privacy policy, and connect with us on social platforms."
         />
         <meta
           name="keywords"
-          content="Blaze Publishers, ebook writing, editing, publishing, contact, Facebook, Instagram, Twitter, LinkedIn"
+          content="Blaze Publishers, ebook writing, editing, publishing, terms and conditions, privacy policy"
         />
         <meta property="og:site_name" content="Blaze Publishers" />
       </Head>
@@ -134,11 +134,36 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider + Copyright */}
+        {/* Bottom Section */}
         <div className="border-t border-gray-200 mt-10 pt-5 text-center text-gray-500 text-xs sm:text-sm px-6 space-y-2">
-          <p>© {new Date().getFullYear()} Blaze Publishers. All rights reserved.</p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href="/terms-condition"
+              className="hover:text-orange-600 transition-colors"
+            >
+              Terms & Conditions
+            </Link>
+            <span className="text-gray-300">|</span>
+            <Link
+              href="/terms-condition#privacy"
+              className="hover:text-orange-600 transition-colors"
+            >
+              Privacy Policy
+            </Link>
+          </div>
+
+          <p>
+            © {new Date().getFullYear()} Blaze Publishers. All rights reserved.
+          </p>
+
+          <p className="text-[11px] text-gray-400">
+            Powered by{" "}
+            <span className="font-semibold text-gray-600">
+              Techivance
+            </span>
+          </p>
         </div>
       </footer>
     </>
-  );
+  )
 }
